@@ -25,8 +25,13 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <div v-for="solicitar in solicitable" :key="solicitar.id" class="fSolicitados">
-              <span class="float-right">{{folio.cuenta}}</span>
-              <p>{{folio.nombre}}</p>
+              <div class="float-right">
+                <i class="mdi mdi-minus"></i>
+                <input type="number" value="0" class="contador" />
+                <i class="mdi mdi-plus-thick"></i>
+              </div>
+                
+              <p>{{solicitar.nombre}}</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -48,6 +53,10 @@
 <style>
 .flex-1-1{
   flex: 1 1 auto;
+}
+.mdi-plus-thick, .mdi-minus{
+  color: #0074D9;
+  font-size: 16px;
 }
 .h-94{
   height: 94%;
@@ -79,6 +88,13 @@
 .flechaAzul{
   font-size: 40px!important;
 }
+.contador{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 3px #00000029;
+  border-radius: 4px;
+  width: 50px;
+  text-align: end;
+}
 </style>
 <script>
 export default {
@@ -91,7 +107,8 @@ export default {
     disabled:false,
     panel:0,
     folios:[{nombre:'Cargando...',cuenta:'0 estudios'},],
-
+    solicitable:[{nombre:'Cargando...',cuenta:'0 estudios'},],
+    s:[0,0,0]
   }),
 };
 </script>
