@@ -24,14 +24,13 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <div v-for="solicitar in solicitable" :key="solicitar.id" class="fSolicitados">
-              <div class="float-right">
-                <i class="mdi mdi-minus"></i>
-                <input type="number" value="0" class="contador" />
-                <i class="mdi mdi-plus-thick"></i>
-              </div>
-                
-              <p>{{solicitar.nombre}}</p>
+            <div v-for="(estudio,index) in estudios" :key="estudio.id" class="fSolicitados">
+              <div class="float-right" >
+                <a class="mdi mdi-minus" @click="quitar(index)"></a>
+                <input disabled type="number" value="0" class="contador" v-model="estudio.cantidad" />
+                <a :disabled="disabledAdd" class="mdi mdi-plus-thick" @click="agregar(index)"></a>
+              </div>              
+              <p>{{estudio.name}}</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -97,18 +96,57 @@
 }
 </style>
 <script>
+import estudiosService from '../services/estudios' ;
+import foliosService from '../services/folios' ;
+
 export default {
+
   name: "Solicitar",
 
   components: {},
 
   data: () => ({
+    estudios:null,
     status:false,
     disabled:false,
+    disabledAdd:false,
     panel:0,
     folios:[{nombre:'Cargando...',cuenta:'0 estudios'},],
     solicitable:[{nombre:'Cargando...',cuenta:'0 estudios'},],
     s:[0,0,0]
   }),
+  created() {
+  },
+  mounted() {
+    estudiosService.getEstudios().then(res=>{
+      let data=res.map(x=>{
+        return{
+        id:x.id,
+        name:x.name,
+        cantidad:0
+        }
+      })
+      console.log(data)
+      this.estudios=data;
+    })
+  },
+  methods: {
+    agregar(index){
+      this.disabledAdd=true;
+      foliosService.checkDisponibilidad(this.estudios[index].id,this.estudios[index].cantidad+1,3).then(res=>{
+        if(res.status==true)
+          this.estudios[index].cantidad++
+        else
+          console.log('folios no disponibles')
+         this.disabledAdd=false
+
+      })
+      
+    },
+    quitar(index){
+      if(this.estudios[index].cantidad>0)
+        this.estudios[index].cantidad--
+    }
+  }
 };
 </script>
