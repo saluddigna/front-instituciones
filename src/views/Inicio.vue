@@ -79,7 +79,7 @@ export default {
   data: () => ({
     institucion:JSON.parse(sessionStorage.getItem('dataUser')).institution.name,
     ext:'Facultad de Ingeniería',
-    activar:1
+    activar:0
   }),
   mounted(){
        let dataUser = JSON.parse(sessionStorage.getItem('dataUser'))   

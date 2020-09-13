@@ -21,6 +21,7 @@
               v-model="pass"
               class="inputPass required"
               placeholder="Contraseña"
+              @keypress.enter="logIn"
               required
             />
           </div>
