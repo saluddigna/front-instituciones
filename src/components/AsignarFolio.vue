@@ -5,16 +5,16 @@
         <v-card class="card">
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
             <div class="rounded-circle iconEstudio mx-2">
-              <i v-if="folio.estudioId==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.estudioId==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+              <i v-if="folio.parentEstudioId==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="folio.parentEstudioId==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
             </div>
             <span class="tituloEstudio">{{folio.estudioName}}</span>
           </div>
@@ -40,7 +40,7 @@
             <!-- <b>Estatus:</b> {{ folio.status }} -->
           </div>
           <div v-else class="pa-4 prepaFolio">
-            <!-- {{ folio.preparacion }} -->
+            {{ folio.estudioPreparacion }}
           </div>
           <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio)">Omitir datos</a>
@@ -227,6 +227,7 @@ export default {
           clinicaId:x.clinicaId,
           estudioDescription:x.estudioDescription,
           estudioId:x.estudioId,
+          parentEstudioId:x.parentEstudioId,
           estudioName:x.estudioName,
           estudioPreparacion:x.estudioPreparacion,
           flecha:true,

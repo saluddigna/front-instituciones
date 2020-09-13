@@ -10,7 +10,7 @@
         </div>
       </div>
       <div v-show="panel!=2" class="miniCarrusel flex-row" :class="{'carruselD':derecha, 'd-flex': panel!=2}">
-        <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id;study=estudio;" >
+        <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="changeSelected(estudio.id,estudio)" >
           <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
           <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
           <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
@@ -33,8 +33,9 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
            <div v-for="folio in foliosSolicitados" :key="folio.id" class="d-flex">
-             <p v-if="folio.estudioId==activo" class="flex-1-1">{{folio.estudioName}}</p>
-             <v-checkbox v-if="folio.estudioId==activo" v-model="folio.generar" class="checkL" ></v-checkbox>
+            <!-- {{folio}},{{activo}} -->
+             <p v-if="folio.parentEstudioId==activo || activo==null" class="flex-1-1">{{folio.estudioName}}</p>
+             <v-checkbox v-if="folio.parentEstudioId==activo || activo==null" v-model="folio.generar" class="checkL" ></v-checkbox>
              
            </div>
           </v-expansion-panel-content>
@@ -149,6 +150,7 @@
 import AsignarFolio from './AsignarFolio'
 import FolioAsignado from './FolioAsignado'
 import foliosService from '../services/folios'
+import utilsService from '../services/utils-services'
 
 export default {
   name: 'Asignar',
@@ -225,10 +227,12 @@ export default {
     get(){
       foliosService.getSolicitados(this.dataUser.institution.id).then(res=>
     {
+      console.log(res);
        let data=res.map(x=>{
         return{
         folioId:x.id,
         estudioId:x.clinicalStudy.id,
+        parentEstudioId:x.clinicalStudy.idEstudio,
         estudioName:x.clinicalStudy.description,
         generar:false
         }
@@ -276,6 +280,7 @@ export default {
           clinicaId:x.clinicaId,
           estudioDescription:x.estudioDescription,
           estudioId:x.estudioId,
+          parentEstudioId: x.parentEstudioId,
           estudioName:x.estudioName,
           estudioPreparacion:x.estudioPreparacion,
           flecha:true,
@@ -284,6 +289,8 @@ export default {
           statusSolicitude:x.statusSolicitude,
         }
         });
+        if(this.activo!=null)
+          data=data.filter(x=>x.parentEstudioId==this.activo)
         this.foliosD=data;
         console.log(this.foliosD)
       })
@@ -313,8 +320,14 @@ export default {
       })
     },
     changeSelected(estudioId,estudio){
-      this.activo=estudioId
-      this.study=estudio
+      if(this.activo==estudioId){
+        this.activo=null
+          utilsService.setFiltroEstudio(null)
+      }else{
+        this.activo=estudioId
+        this.study=estudio
+      }
+      this.getFoliosGenerados()
       // console.log(this.foliosSolicitados,this.activo)
       // this.foliosSolicitados=this.foliosSolicitados.filter(x => x.estudioId==this.activo);
       // console.log(this.foliosSolicitados)
