@@ -47,6 +47,26 @@
         >Solicitar estudio <i class="mdi mdi-chevron-right"></i></v-btn>
       </div>
     </div>
+    <v-snackbar
+      v-model="snackbar"
+      color="info"
+      top
+      right
+      dark
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Aceptar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 <style>
@@ -116,7 +136,9 @@ export default {
     solicitable:[{nombre:'Cargando...',cuenta:'0 estudios'},],
     s:[0,0,0],
     dataUser:null,
-    listo: false
+    listo: false,
+    snackbar: false,
+    text:'Sin folios disponibles'
   }),
   created() {
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
@@ -141,7 +163,8 @@ export default {
         if(res.status==true)
           this.estudios[index].cantidad++
         else{
-        alert('Sin Folios Disponibles')
+        this.snackbar=true
+        this.text='Sin folios disponibles'
         }
           console.log('folios no disponibles')
          this.disabledAdd=false
@@ -162,7 +185,8 @@ export default {
         foliosSolicitud.push(x)
       })
       if(foliosSolicitud.length==0){
-        alert('la cantidad total de folios a solictar debe ser al menos 1')
+        this.snackbar=true
+        this.text='La cantidad total de folios a solictar debe ser al menos 1'
         return
       }
       console.log(foliosSolicitud)
@@ -170,7 +194,8 @@ export default {
       {
         if(res.status){
           this.listo=true
-          alert('Folios Solicitados')
+          this.snackbar=true
+          this.text='Folios solicitados'
         }
       })
     }

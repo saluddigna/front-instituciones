@@ -6,7 +6,7 @@
       append-icon="mdi-magnify"
       dense
     ></v-text-field>
-    <imprimir />
+    <imprimir :opcion="'todos'" :cupon="foliosAsignados" />
     <v-row>
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
@@ -51,9 +51,10 @@
           <div v-else class="pa-4 prepaFolio">
             {{ folio.estudioPreparacion }}
           </div>
-          <div class="d-flex flex-row justify-center align-center pa-1">
-            <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Imprimir</a>
-          </div>
+          <!-- <div class="d-flex flex-row justify-center align-center pa-1">
+            <a href="#"  class="datosFolio text-center">Imprimir</a>
+          </div> -->
+          <imprimir :opcion="'solo'" :cupon="folio" />
         </v-card>
       </v-col>
     </v-row>
@@ -120,6 +121,9 @@ export default {
     //     console.log(this.foliosAsignados)
     //   })
     // }
+    llenarDatos(f){
+      this.foliosA=f
+    }
   }
 
 }
