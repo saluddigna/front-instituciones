@@ -10,7 +10,7 @@
         </div>
       </div>
       <div v-show="panel!=2" class="miniCarrusel flex-row" :class="{'carruselD':derecha, 'd-flex': panel!=2}">
-        <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id, study=estudio" >
+        <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id;study=estudio;" >
           <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
           <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
           <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
@@ -33,8 +33,8 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
            <div v-for="folio in foliosSolicitados" :key="folio.id" class="d-flex">
-             <p class="flex-1-1">{{folio.estudioName}}</p>
-             <v-checkbox v-model="folio.generar" class="checkL" ></v-checkbox>
+             <p v-if="folio.estudioId==activo" class="flex-1-1">{{folio.estudioName}}</p>
+             <v-checkbox v-if="folio.estudioId==activo" v-model="folio.generar" class="checkL" ></v-checkbox>
              
            </div>
           </v-expansion-panel-content>
@@ -162,6 +162,7 @@ export default {
     this.get()
   },
   data: () => ({
+    status:null,
     dataUser:null,
     activo:1,
     study:{
@@ -227,7 +228,8 @@ export default {
        let data=res.map(x=>{
         return{
         folioId:x.id,
-        estudioName:x.clinicalStudy.name,
+        estudioId:x.clinicalStudy.id,
+        estudioName:x.clinicalStudy.description,
         generar:false
         }
       })
@@ -309,6 +311,13 @@ export default {
         console.log(data)
         this.foliosA=data;
       })
+    },
+    changeSelected(estudioId,estudio){
+      this.activo=estudioId
+      this.study=estudio
+      // console.log(this.foliosSolicitados,this.activo)
+      // this.foliosSolicitados=this.foliosSolicitados.filter(x => x.estudioId==this.activo);
+      // console.log(this.foliosSolicitados)
     }
   }
 };

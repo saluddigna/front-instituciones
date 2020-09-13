@@ -43,7 +43,7 @@
             <!-- {{ folio.preparacion }} -->
           </div>
           <div class="d-flex flex-row justify-center align-center pa-1">
-            <a href="#" class="datosFolio text-center">Omitir datos</a>
+            <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio)">Omitir datos</a>
             <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Llenar datos</a>
           </div>
         </v-card>
@@ -198,6 +198,17 @@ export default {
       this.vista=1
     },
     guardarFolio(){
+      foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
+      {
+        console.log(res)
+        this.getFoliosGenerados();
+        this.vista=2
+      })
+    },
+    guardarFolioOmitir(folio){
+        let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:"",paternal:"",maternal:""}]}
+        this.folioSeleccionado=selected
+
       foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
       {
         console.log(res)
