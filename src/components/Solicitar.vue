@@ -12,7 +12,7 @@
           <v-expansion-panel-content>
             <div v-for="folio in folios" :key="folio.id" class="fSolicitados">
               <span class="float-right">{{folio.cuenta}}</span>
-              <p>{{folio.nombre}}</p>
+              <p>{{folio.folios}}</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -148,7 +148,7 @@ export default {
       let data=res.map(x=>{
         return{
         id:x.id,
-        name:x.name,
+        name:x.description,
         cantidad:0
         }
       })
