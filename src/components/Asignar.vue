@@ -1,26 +1,26 @@
 <template>
   <div class="d-flex flex-column h-94">
-    <div class="flex-1-1" v-if="!listo">
+    <div class="flex-1-1 contenedor" v-if="!listo">
       <div class="sd-navs-areas">
-        <div class="sd-previous">
+        <div class="sd-previous" @click="derecha=false">
             <i class="icon-angle-left-4"></i>
         </div>
-        <div class="sd-next">
+        <div class="sd-next" @click="derecha=true">
             <i class="icon-angle-right-4"></i>
         </div>
       </div>
-      <div class="d-flex miniCarrusel flex-row">
-        <div class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id" >
-          <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria"></i>
-          <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio"></i>
-          <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia"></i>
-          <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau"></i>
-          <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x"></i>
-          <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido"></i>
-          <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma"></i>
-          <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia"></i>
-          <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia"></i>
-          <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2"></i>
+      <div class="d-flex miniCarrusel flex-row" :class="{'carruselD':derecha}">
+        <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id, study=estudio" >
+          <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
         </div>
       </div>
       <v-expansion-panels accordion v-model="panel">
@@ -89,7 +89,6 @@
         >Generar Folio <i class="mdi mdi-chevron-right"></i></v-btn>
         
       </div>
-      {{checkGenerar.lenght}}
     </div>
   </div>
 </template>
@@ -105,8 +104,11 @@
     animation: 0.3s all;
     transition: 0.3s all;
   }
-  .activo{
-    fill:aliceblue
+  .contenedor{
+    overflow-x: hidden;
+  }
+  .estudioCarrusel .activo{
+    color:rgb(255, 255, 255)!important
   }
   .checkL{
     margin-top: 0!important;
@@ -114,9 +116,6 @@
   }
   .gris{
     color:#616161
-  }
-  .miniCarrusel{
-    overflow-x: hidden;
   }
   .sd-navs-areas {
     display: flex;
@@ -142,38 +141,8 @@
   .estudioCarrusel i{
     font-size: 30px;
   }
-  .estudioCarrusel i.activo{
-    color: #fff;
-  }
-  .icon-densitometria {
-    color: #7F95A0;
-  }
-  .icon-laboratorio {
-      color: #359FDA;
-  }
-  .icon-mastografia {
-      color: #ED4B80;
-  }
-  .icon-nutricion2 {
-      color: #5D9F60;
-  }
-  .icon-papanicolau {
-      color: #A351BA;
-  }
-  .icon-rayos-x {
-      color: #6A52B2;
-  }
-  .icon-resonancia {
-      color: #896F67;
-  }
-  .icon-tomografia {
-      color: #999245;
-  }
-  .icon-ultrasonido {
-      color: #339BA4;
-  }
-  .icon-electrocardiograma {
-      color: #DB5859;
+  .carruselD{
+    transform: translateX(-90px);
   }
 </style>
 <script>
@@ -192,11 +161,16 @@ export default {
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
     this.get()
   },
-    data: () => ({
+  data: () => ({
     dataUser:null,
-    activo:0,
-    study:null,
+    activo:1,
+    study:{
+      id:1,
+      nombre:'Densitometría',
+      color:'#7F95A1'
+    },
     panel:null,
+    derecha:false,
     checkGenerar:[],
     listo:false,
     foliosSolicitados:null,
@@ -260,6 +234,10 @@ export default {
       console.log(data)
       this.foliosSolicitados=data;
     })
+    },
+    moverCarrusel(){
+      var carrusel = document.getElementById('carrusel')
+      carrusel.setAttribute("style", "transform: rotate(" + this.cuenta + "deg)")
     },
     generar(){
       let foliosGenerar=[]
