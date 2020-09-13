@@ -1,13 +1,17 @@
 <template>
   <div>
-    asdasdasdadasdas
+    <v-card>
+  </v-card>
   </div>
 </template>
 <script>
 export default {
-  name:'GolioAsignado',
+  name:'FolioAsignado',
   data: () => ({
     //
   }),
+  props:{
+    
+  }
 }
 </script>
