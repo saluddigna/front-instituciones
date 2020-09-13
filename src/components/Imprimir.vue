@@ -23,10 +23,12 @@
           <v-toolbar-title><v-icon>mdi-printer</v-icon> Vista previa</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark text @click="dialog = false">Imprimir</v-btn>
+            <v-btn dark text @print="'imprimir'">Imprimir</v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <cupon :cupones="cupon" />
+        <div id="imprimir">
+          <cupon :cupones="cupon" />
+        </div>
       </v-card>
     </v-dialog>
 </template>
@@ -51,13 +53,9 @@ export default {
       this.cupon=[this.cupon]
     }
   },
-  directives: {
-  focus: {
-    // Definición de directiva
-    inserted: function (el) {
-      el.focus()
-    }
+  methods: {
+      
   }
-}
+
 }
 </script>
