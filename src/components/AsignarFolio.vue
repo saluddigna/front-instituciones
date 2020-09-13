@@ -52,15 +52,15 @@
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
             <div class="rounded-circle iconEstudio mx-2">
               <i v-if="estudio.id==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+            <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
             </div>
             <span class="tituloEstudio">{{estudio.nombre}}</span>
           </div>
