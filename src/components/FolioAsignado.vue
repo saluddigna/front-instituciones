@@ -8,7 +8,7 @@
     ></v-text-field>
     <v-col cols="6" class="pa-0">
       <v-card v-for="(folio,i) in foliosAsignados" :key="folio.id">
-        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio[folio.estudioId-1].color">
+        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio[folio.estudioId].color">
           <div class="rounded-circle iconEstudio mx-2">
             <i v-if="folio.estudioId==1" class="icon-densitometria" :style="'color:'+estudio[folio.estudioId].color"></i>
             <i v-else-if="folio.estudioId==2" class="icon-laboratorio" :style="'color:'+estudio[folio.estudioId].color"></i>

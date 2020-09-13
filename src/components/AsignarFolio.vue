@@ -170,12 +170,13 @@ export default {
   name:'AsignarFolio',
   data: () => ({
     flecha:[true,true,true,true,true,true,true,true],
-    vista:0
+    vista:0,
+    folioSeleccionado:{}
   }),
   props:{
     foliosDisponibles:[],
     estudio:{},
-    folioSeleccionado:{}
+    
   },
   methods:{
     llenarDatos(folio){
