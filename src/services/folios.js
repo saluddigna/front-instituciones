@@ -44,4 +44,7 @@ service.asignarBeneficiario = function(data){
   return api.post('/api/assignedFolios/create', data).then(res => res.data)
 }
 
+service.getAsignados = function(id){
+  return api.get('/api/folios/obtener-asignados/'+id).then(res => res.data)
+}
 export default service

@@ -51,14 +51,14 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel >
-          <v-expansion-panel-header>
+          <v-expansion-panel-header @click="getFoliosAsignados()">
             Folios asignados
             <template v-slot:actions>
               <v-icon color="primary" class="flechaAzul">$expand</v-icon>
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <folioAsignado :estudios="estudios" />
+            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -217,7 +217,7 @@ export default {
     },
     ],
     estudioF:[{id:0, nombre:'Cargando...'},],
-    foliosD:null
+    foliosD:null,foliosA:null
   }),
 
   methods:{
@@ -266,6 +266,12 @@ export default {
       foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
         this.foliosD=res;
         console.log(this.foliosD)
+      })
+    },
+    getFoliosAsignados(){
+      foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
+        this.foliosA=res;
+        console.log(this.foliosA)
       })
     }
   }

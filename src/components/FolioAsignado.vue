@@ -37,18 +37,18 @@
         <div v-if="flecha[i]" class="pa-2 infoFolio">
           <b>Folio:</b>  {{folio.folio}}
           <br />
-          <b>Nombre:</b>  {{folio.nombre}}
+          <b>Nombre:</b>  {{folio.beneficiaryName}}
           <br />
-          <b>Apellido P:</b>  {{ folio.apellidoP }}
+          <b>Apellido P:</b>  {{ folio.beneficiaryPaternalName }}
           <br />
-          <b>Apellido M:</b> {{ folio.apellidoM }}
+          <b>Apellido M:</b> {{ folio.beneficiaryMaternalName }}
           <br />
-          <b>Clínica:</b> {{ folio.clinica }}
+          <b>Clínica:</b> {{ folio.clincaName }}
           <br />
-          <b>Estatus:</b> {{ folio.status }}
+          <!-- <b>Estatus:</b> {{ folio.status }} -->
         </div>
         <div v-else class="pa-4 prepaFolio">
-          {{ folio.preparacion }}
+          <!-- {{ folio.preparacion }} -->
         </div>
         <div class="d-flex flex-row justify-center align-center pa-1">
           <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Imprimir</a>
@@ -59,17 +59,30 @@
 </template>
 <script>
 import Imprimir from './Imprimir'
+import foliosService from '../services/folios'
+
 export default {
   name:'FolioAsignado',
   data: () => ({
-    flecha:[true],
-    foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
+    flecha:[true,true,true,true,true,true,true,true],
+    dataUser:null,
+    // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
+  mounted(){
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+  },
   components: {
     Imprimir
   }, 
   props:{
     estudios:{},
+    foliosAsignados:null
   },
+  async getFoliosAsignados(){
+      await foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
+        this.foliosAsignados=res;
+        console.log(this.foliosDisponibles)
+      })
+    }
 }
 </script>
