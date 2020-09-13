@@ -4,18 +4,18 @@
       <v-card v-for="(folio,i) in foliosDisponibles" :key="folio.id">
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
           <div class="rounded-circle iconEstudio mx-2">
-            <i v-if="estudio.id==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+            <i v-if="folio.estudioId==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="folio.estudioId==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
           </div>
-          <span class="tituloEstudio">{{estudio.nombre}}</span>
+          <span class="tituloEstudio">{{folio.estudioName}}</span>
         </div>
         <div>
           <div class="d-flex flex-row justify-center align-center">
@@ -28,18 +28,18 @@
           </div>
         </div>
         <div v-if="flecha[i]" class="pa-2 infoFolio">
-          <b>Nombre:</b>  {{folio.nombre}}
+          <b>Nombre:</b>{{folio.beneficiaryName}} 
           <br />
-          <b>Apellido P:</b>  {{ folio.apellidoP }}
+          <b>Apellido P:</b> {{folio.beneficiaryPaternalName }}
           <br />
-          <b>Apellido M:</b> {{ folio.apellidoM }}
+          <b>Apellido M:</b> {{ folio.beneficiaryMaternalName }}
           <br />
-          <b>Clínica:</b> {{ folio.clinica }}
+          <b>Clínica:</b>{{ folio.clincaName }} 
           <br />
-          <b>Estatus:</b> {{ folio.status }}
+          <!-- <b>Estatus:</b> {{ folio.status }} -->
         </div>
         <div v-else class="pa-4 prepaFolio">
-          {{ folio.preparacion }}
+          <!-- {{ folio.preparacion }} -->
         </div>
         <div class="d-flex flex-row justify-center align-center pa-1">
           <a href="#" class="datosFolio text-center">Omitir datos</a>
@@ -51,16 +51,17 @@
       <v-card>
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
             <div class="rounded-circle iconEstudio mx-2">
-              <i v-if="estudio.id==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+              <i v-if="estudio.id==1" class="icon-densitometria" ></i>
+              <!-- :style="'color:'+estudio.color" -->
+          <i v-else-if="estudio.id==2" class="icon-laboratorio" ></i>
+          <i v-else-if="estudio.id==3" class="icon-mastografia" ></i>
+          <i v-else-if="estudio.id==4" class="icon-papanicolau"></i>
+          <i v-else-if="estudio.id==5" class="icon-rayos-x"></i>
+          <i v-else-if="estudio.id==6" class="icon-ultrasonido" ></i>
+          <i v-else-if="estudio.id==7" class="icon-electrocardiograma"></i>
+          <i v-else-if="estudio.id==8" class="icon-tomografia" ></i>
+          <i v-else-if="estudio.id==9" class="icon-resonancia"></i>
+          <i v-else-if="estudio.id==10" class="icon-nutricion2" ></i>
             </div>
             <span class="tituloEstudio">{{estudio.nombre}}</span>
           </div>
@@ -68,29 +69,30 @@
             <div v-if="vista==1">
               <v-text-field
                 label="Nombre"
-                v-model="nombre"
+                v-model="folioSeleccionado.foliosToAssign[0].name"
                 outlined
                 dense
               ></v-text-field>
               <v-text-field
                 label="Apellido Paterno"
-                v-model="apellidoP"
+                v-model="folioSeleccionado.foliosToAssign[0].paternal"
                 outlined
                 dense
               ></v-text-field>
               <v-text-field
                 label="Apellido Materno"
-                v-model="apellidoM"
+                v-model="folioSeleccionado.foliosToAssign[0].maternal"
                 outlined
                 dense
               ></v-text-field>
-              <v-select
+              <v-text-field
               :items="items"
-              v-model="clinica"
+              v-model="folioSeleccionado.foliosToAssign[0].clinicaName"
               label="Clínica"
               outlined
               dense
-            ></v-select>
+              disabled
+            ></v-text-field>
             <v-btn
               @click="guardarFolio"
               class="letraNormal btnSolicitar centrar"
@@ -103,7 +105,7 @@
             <img src="../assets/imgs/iconos/Check.svg" alt="Palomita Verde">
             <div class="my-2">
               <v-btn
-                @click="vista=1"
+                @click="vista=0"
                 class="letraNormal mt-14"
                 color="success"
               >Aceptar</v-btn>
@@ -166,24 +168,42 @@
   }
 </style>
 <script>
+import foliosService from '../services/folios'
 export default {
   name:'AsignarFolio',
   data: () => ({
     flecha:[true,true,true,true,true,true,true,true],
-    vista:0
+    vista:0,
+    dataUser:null
   }),
+  mounted(){
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+  },
   props:{
-    foliosDisponibles:[],
+    foliosDisponibles:null,
     estudio:{},
     folioSeleccionado:{}
   },
   methods:{
     llenarDatos(folio){
-      this.folioSeleccionado=folio
+      let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:folio.beneficiaryName,paternal:folio.beneficiaryPaternalName,maternal:folio.beneficiaryMaternalName}]}
+      this.folioSeleccionado=selected
+      console.log(this.folioSeleccionado.foliosToAssign[0].folio)
       this.vista=1
     },
     guardarFolio(){
-      this.vista=2
+      foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
+      {
+        console.log(res)
+        this.getFoliosGenerados();
+        this.vista=2
+      })
+    },
+    async getFoliosGenerados(){
+      await foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
+        this.foliosDisponibles=res;
+        console.log(this.foliosDisponibles)
+      })
     }
   }
 }

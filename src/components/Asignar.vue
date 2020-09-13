@@ -40,7 +40,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel >
-          <v-expansion-panel-header>
+          <v-expansion-panel-header @click="getFoliosGenerados()">
             Asignar folio
             <template v-slot:actions>
               <v-icon color="primary" class="flechaAzul">$expand</v-icon>
@@ -217,7 +217,7 @@ export default {
     },
     ],
     estudioF:[{id:0, nombre:'Cargando...'},],
-    foliosD:[{nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:500000, preparacion:'Sin preparacion'}]
+    foliosD:null
   }),
 
   methods:{
@@ -260,6 +260,12 @@ export default {
             this.listo=true
             this.panel=null
         }
+      })
+    },
+    getFoliosGenerados(){
+      foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
+        this.foliosD=res;
+        console.log(this.foliosD)
       })
     }
   }

@@ -29,17 +29,19 @@ service.getSolicitados = function(id){
 }
 
 service.generarFolios = function(data){
-  // let data={
-  //   study:estudio,
-  //   quantity:cantidad,
-  //   institution:institucion
-  //   }
   return api.post('/api/folios/generar-folios', {
       headers: {
           'Content-Type': 'application/json',
       },
       data
   }).then(res => res.data)
+}
+service.getGenerados = function(id){
+  return api.get('/api/folios/obtener-generados/'+id).then(res => res.data)
+}
+
+service.asignarBeneficiario = function(data){
+  return api.post('/api/assignedFolios/create', data).then(res => res.data)
 }
 
 export default service
