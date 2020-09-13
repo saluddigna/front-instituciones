@@ -50,6 +50,8 @@
    cursor: pointer;
    border-bottom: 2px solid #e5e5e5;
    font-weight:normal!important;
+   position: relative;
+    top: 2px;
  }
  .tab h4{
    font-weight: normal;
@@ -77,7 +79,7 @@ export default {
   data: () => ({
     institucion:JSON.parse(sessionStorage.getItem('dataUser')).institution.name,
     ext:'Facultad de Ingeniería',
-    activar:0
+    activar:1
   }),
 }
 </script>

@@ -6,20 +6,21 @@
       append-icon="mdi-magnify"
       dense
     ></v-text-field>
+    <imprimir />
     <v-col cols="6" class="pa-0">
       <v-card v-for="(folio,i) in foliosAsignados" :key="folio.id">
-        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio[folio.estudioId-1].color">
+        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudios[folio.estudioId-1].color">
           <div class="rounded-circle iconEstudio mx-2">
-            <i v-if="folio.estudioId==1" class="icon-densitometria" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==2" class="icon-laboratorio" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==3" class="icon-mastografia" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==4" class="icon-papanicolau" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==5" class="icon-rayos-x" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==6" class="icon-ultrasonido" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==8" class="icon-tomografia" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==9" class="icon-resonancia" :style="'color:'+estudio[folio.estudioId].color"></i>
-            <i v-else-if="folio.estudioId==10" class="icon-nutricion2" :style="'color:'+estudio[folio.estudioId].color"></i>
+            <i v-if="folio.estudioId==1" class="icon-densitometria" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==2" class="icon-laboratorio" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==3" class="icon-mastografia" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==4" class="icon-papanicolau" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==5" class="icon-rayos-x" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==6" class="icon-ultrasonido" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==8" class="icon-tomografia" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==9" class="icon-resonancia" :style="'color:'+estudios[folio.estudioId-1].color"></i>
+            <i v-else-if="folio.estudioId==10" class="icon-nutricion2" :style="'color:'+estudios[folio.estudioId-1].color"></i>
           </div>
           <span class="tituloEstudio">{{folio.estudio}}</span>
         </div>
@@ -50,20 +51,23 @@
           {{ folio.preparacion }}
         </div>
         <div class="d-flex flex-row justify-center align-center pa-1">
-          <a href="#" class="datosFolio text-center">Omitir datos</a>
-          <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Llenar datos</a>
+          <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Imprimir</a>
         </div>
       </v-card>
     </v-col>
   </div>
 </template>
 <script>
+import Imprimir from './Imprimir'
 export default {
   name:'FolioAsignado',
   data: () => ({
     flecha:[true],
-    foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:500000, preparacion:'Sin preparacion'}]
+    foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
+  components: {
+    Imprimir
+  }, 
   props:{
     estudios:{},
   },

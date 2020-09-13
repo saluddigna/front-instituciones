@@ -174,7 +174,8 @@ export default {
   data: () => ({
     flecha:[true,true,true,true,true,true,true,true],
     vista:0,
-    dataUser:null
+    dataUser:null,
+    folioSeleccionado:{}
   }),
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
@@ -182,7 +183,7 @@ export default {
   props:{
     foliosDisponibles:null,
     estudio:{},
-    folioSeleccionado:{}
+    
   },
   methods:{
     llenarDatos(folio){
