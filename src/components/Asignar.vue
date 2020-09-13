@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="d-flex miniCarrusel flex-row">
-        <div class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id" >
+        <div class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id, study=estudio" >
           <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria"></i>
           <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio"></i>
           <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia"></i>
