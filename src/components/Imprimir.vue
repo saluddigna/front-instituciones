@@ -23,12 +23,16 @@
           <v-toolbar-title><v-icon>mdi-printer</v-icon> Vista previa</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark text @print="'imprimir'">Imprimir</v-btn>
+            <v-btn dark text v-print="'imprimir'" @click="imprimir">Imprimir</v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <div id="imprimir">
+        <div id="imprimir" ref="printMe">
           <cupon :cupones="cupon" />
         </div>
+        <div  >
+          <img :src="output">
+        </div>
+        
       </v-card>
     </v-dialog>
 </template>
@@ -39,6 +43,7 @@ export default {
   data () {
       return {
         dialog: false,
+        output:null
       }
     },
   components: {
@@ -48,13 +53,27 @@ export default {
     opcion:String,
     cupon:[]
   },
-  mounted(){
-    if(this.opcion=='solo'){
-      this.cupon=[this.cupon]
-    }
-  },
   methods: {
+    async imprimir(){
       
+      // const el = this.$refs.printMe
+      // const options = {
+      //   type: 'dataURL'
+      // }
+      // this.output = await this.$html2canvas(el, options)
+      console.log('Imprimiendo')
+      let imprimir = document.getElementById('imprimir');
+      var ventana = window.open('', 'PRINT', 'height=400,width=600');
+      ventana.document.write('<html><head><title>' + document.title + '</title>');
+      ventana.document.write('<link rel="stylesheet" href="cupon.css">');
+      ventana.document.write('</head><body >');
+      ventana.document.write(imprimir.innerHTML);
+      ventana.document.write('</body></html>');
+      ventana.document.close();
+      ventana.focus();
+      ventana.print();
+    },
+
   }
 
 }

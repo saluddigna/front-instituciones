@@ -167,6 +167,7 @@
   }
   .prepaFolio{
     height: 160px;
+    overflow-y: auto;
   }
   .centrar{
     align-self: center;

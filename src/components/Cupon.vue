@@ -36,7 +36,7 @@
 }
 .sd-contenedor-cupones{
     margin: 0 auto;
-    width: 792px;
+    width: 720px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
