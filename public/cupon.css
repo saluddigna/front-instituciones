@@ -1,0 +1,100 @@
+@media print { body { -webkit-print-color-adjust: exact; } }
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.sd-contenedor-cupones{
+    margin: 0 auto;
+    width: 792px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.sd-item-cupon{
+    width: 350px;
+    display: flex;
+    background-color: #EDEDED;
+    padding: 14px 10px;
+    margin-bottom: 15px;
+}
+
+.sd-item-cupon .sd-item-content:nth-child(1){
+    width: 197px;
+    padding-right: 5px;
+    border-right: 2px dashed #AFAFAF;
+}
+
+.sd-item-cupon .sd-item-content:nth-child(2){
+    width: 153px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sd-item-logo{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.sd-item-logo img:nth-child(1){
+    width: 91px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.sd-item-logo img:nth-child(2){
+    width: 47px;
+    height: auto;
+}
+
+.sd-titulo-preparacion{
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sd-item-preparacion{
+    font-size: 10px;
+    color: #616161;
+}
+
+.sd-datos-folio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sd-sucursal{
+    font-size: 10px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.sd-content-folio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px dashed #FBAB1F;
+    padding: 5px 6px 2px 6px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.sd-folio{
+    font-size: 18px;
+    font-weight: 600;
+    color: #FBAB1F;
+    margin: 0;
+}
+
+.sd-text{
+    font-size: 14px;
+    margin: 0;
+}
+
+.sd-estudio{
+    font-size: 10px;
+    margin: 0;
+}

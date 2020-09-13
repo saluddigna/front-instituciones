@@ -40,7 +40,7 @@
             <!-- <b>Estatus:</b> {{ folio.status }} -->
           </div>
           <div v-else class="pa-4 prepaFolio">
-            <!-- {{ folio.preparacion }} -->
+            {{ folio.estudioPreparacion }}
           </div>
           <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio)">Omitir datos</a>
@@ -167,6 +167,7 @@
   }
   .prepaFolio{
     height: 160px;
+    overflow-y: auto;
   }
   .centrar{
     align-self: center;

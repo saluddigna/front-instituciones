@@ -54,7 +54,7 @@
           <!-- <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#"  class="datosFolio text-center">Imprimir</a>
           </div> -->
-          <imprimir :opcion="'solo'" :cupon="folio" />
+          <imprimir :opcion="'solo'" :cupon="[folio]" />
         </v-card>
       </v-col>
     </v-row>

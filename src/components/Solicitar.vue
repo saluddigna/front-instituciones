@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column h-94">
-    <div class="flex-1-1">
+    <div v-if="!listos" class="flex-1-1">
       <v-expansion-panels accordion flat v-model="panel">
         <v-expansion-panel >
           <v-expansion-panel-header>
@@ -35,6 +35,21 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+    </div>
+    <div v-else>
+      <div class="d-flex flex-column pa-10 justify-center align-center">
+        <h1 class="text-center gris">Folios generados</h1>
+        <img src="../assets/imgs/iconos/Check.svg" alt="Palomita Verde">
+         <div class="my-2">
+          <v-btn
+            @click="listo=false"
+            class="letraNormal mt-14"
+            color="success"
+          >Aceptar</v-btn>
+        </div>
+      </div>
+        
+      
     </div>
     <div class="botonesBajos">
       <div class="my-2">
