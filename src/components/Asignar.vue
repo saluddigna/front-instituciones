@@ -270,8 +270,25 @@ export default {
     },
     getFoliosAsignados(){
       foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
-        this.foliosA=res;
-        console.log(this.foliosA)
+        let data=res.map(x=>{
+        return{
+          beneficiaryId:x.beneficiaryId,
+          beneficiaryMaternalName:x.beneficiaryMaternalName,
+          beneficiaryPaternalName:x.beneficiaryPaternalName,
+          clincaName:x.clincaName,
+          clinicaId:x.clinicaId,
+          estudioDescription:x.estudioDescription,
+          estudioId:x.estudioId,
+          estudioName:x.estudioName,
+          estudioPreparacion:x.estudioPreparacion,
+          flecha:true,
+          folio:x.folio,
+          id:x.id,
+          statusSolicitude:x.statusSolicitude,
+        }
+        });
+        console.log(data)
+        this.foliosA=data;
       })
     }
   }

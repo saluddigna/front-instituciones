@@ -81,5 +81,20 @@ export default {
     ext:'Facultad de Ingeniería',
     activar:1
   }),
+  mounted(){
+       let dataUser = JSON.parse(sessionStorage.getItem('dataUser'))   
+          if(!dataUser){
+              window.location.href ='/'
+          }    
+  }
+  // ,
+  // methods:{
+  //     validaUsuario(){ 
+  //         let dataUser = JSON.parse(sessionStorage.getItem('dataUser'))   
+  //         if(!dataUser){
+  //             window.location.href ='/'
+  //         }                
+  //     }
+  // }
 }
 </script>
