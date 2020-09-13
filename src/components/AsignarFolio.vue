@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="vista==0">
-      <v-col  cols="6" class="pa-2" v-for="(folio,i) in foliosDisponibles" :key="folio.id">
+      <v-col  cols="6" class="pa-2" v-for="(folio) in foliosDisponibles" :key="folio.id">
         <v-card class="card">
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
             <div class="rounded-circle iconEstudio mx-2">
@@ -20,15 +20,15 @@
           </div>
           <div>
             <div class="d-flex flex-row justify-center align-center">
-              <button class="estudioInfo" @click="flecha[i]= true">
-                <span class="text-center">Datos <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-up':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-down':!flecha[i]}"></i></span>
+              <button class="estudioInfo" @click="folio.flecha= true">
+                <span class="text-center">Datos <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-up':(folio.flecha||folio.flecha===undefined||folio.flecha==null),'mdi-chevron-down':!folio.flecha}"></i></span>
               </button>
-              <button class="estudioInfo bl-1-gray" @click="flecha[i]= false">
-                <span class="text-center">Preparación <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-down':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-up':!flecha[i]}"></i></span>
+              <button class="estudioInfo bl-1-gray" @click="folio.flecha= false">
+                <span class="text-center">Preparación <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-down':(folio.flecha||folio.flecha===undefined||folio.flecha==null),'mdi-chevron-up':folio.flecha}"></i></span>
               </button>
             </div>
           </div>
-          <div v-if="flecha[i]" class="pa-2 infoFolio">
+          <div v-if="folio.flecha" class="pa-2 infoFolio">
             <b>Nombre:</b>{{folio.beneficiaryName}} 
             <br />
             <b>Apellido P:</b> {{folio.beneficiaryPaternalName }}
@@ -207,8 +207,24 @@ export default {
     },
     async getFoliosGenerados(){
       await foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
-        this.foliosDisponibles=res;
-        console.log(this.foliosDisponibles)
+        this.foliosDisponibles=res.map(x=>{
+        return{
+          beneficiaryId:x.beneficiaryId,
+          beneficiaryName:x.beneficiaryName,
+          beneficiaryMaternalName:x.beneficiaryMaternalName,
+          beneficiaryPaternalName:x.beneficiaryPaternalName,
+          clincaName:x.clincaName,
+          clinicaId:x.clinicaId,
+          estudioDescription:x.estudioDescription,
+          estudioId:x.estudioId,
+          estudioName:x.estudioName,
+          estudioPreparacion:x.estudioPreparacion,
+          flecha:true,
+          folio:x.folio,
+          id:x.id,
+          statusSolicitude:x.statusSolicitude,
+        }
+        });
       })
     }
   }

@@ -75,7 +75,6 @@ export default {
     flecha:[true,true,true,true,true,true,true,true],
     dataUser:null,
     foliosA:null,
-    foliosAsignados:null
     // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
   mounted(){

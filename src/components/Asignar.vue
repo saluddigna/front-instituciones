@@ -264,7 +264,25 @@ export default {
     },
     getFoliosGenerados(){
       foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
-        this.foliosD=res;
+        let data=res.map(x=>{
+        return{
+          beneficiaryId:x.beneficiaryId,
+          beneficiaryName:x.beneficiaryName,
+          beneficiaryMaternalName:x.beneficiaryMaternalName,
+          beneficiaryPaternalName:x.beneficiaryPaternalName,
+          clincaName:x.clincaName,
+          clinicaId:x.clinicaId,
+          estudioDescription:x.estudioDescription,
+          estudioId:x.estudioId,
+          estudioName:x.estudioName,
+          estudioPreparacion:x.estudioPreparacion,
+          flecha:true,
+          folio:x.folio,
+          id:x.id,
+          statusSolicitude:x.statusSolicitude,
+        }
+        });
+        this.foliosD=data;
         console.log(this.foliosD)
       })
     },
@@ -273,6 +291,7 @@ export default {
         let data=res.map(x=>{
         return{
           beneficiaryId:x.beneficiaryId,
+          beneficiaryName:x.beneficiaryName,
           beneficiaryMaternalName:x.beneficiaryMaternalName,
           beneficiaryPaternalName:x.beneficiaryPaternalName,
           clincaName:x.clincaName,
