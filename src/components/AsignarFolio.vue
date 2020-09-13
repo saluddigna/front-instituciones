@@ -19,15 +19,15 @@
         </div>
         <div>
           <div class="d-flex flex-row justify-center align-center">
-            <button class="estudioInfo" @click="flecha[i]= true">
+            <button class="estudioInfo" @click="folio.flecha=true">
               <span class="text-center">Datos <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-up':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-down':!flecha[i]}"></i></span>
             </button>
-            <button class="estudioInfo bl-1-gray" @click="flecha[i]= false">
+            <button class="estudioInfo bl-1-gray" @click="folio.flecha=false">
               <span class="text-center">Preparación <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-down':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-up':!flecha[i]}"></i></span>
             </button>
           </div>
         </div>
-        <div v-if="flecha[i]" class="pa-2 infoFolio">
+        <div v-if="folio.flecha" class="pa-2 infoFolio">
           <b>Nombre:</b>{{folio.beneficiaryName}} 
           <br />
           <b>Apellido P:</b> {{folio.beneficiaryPaternalName }}
@@ -39,7 +39,7 @@
           <!-- <b>Estatus:</b> {{ folio.status }} -->
         </div>
         <div v-else class="pa-4 prepaFolio">
-          <!-- {{ folio.preparacion }} -->
+          {{ folio.estudioPreparacion }}
         </div>
         <div class="d-flex flex-row justify-center align-center pa-1">
           <a href="#" class="datosFolio text-center">Omitir datos</a>
@@ -202,8 +202,24 @@ export default {
     },
     async getFoliosGenerados(){
       await foliosService.getGenerados(this.dataUser.institution.id).then(res=>{
-        this.foliosDisponibles=res;
-        console.log(this.foliosDisponibles)
+        this.foliosDisponibles=res.map(x=>{
+        return{
+          beneficiaryId:x.beneficiaryId,
+          beneficiaryName:x.beneficiaryName,
+          beneficiaryMaternalName:x.beneficiaryMaternalName,
+          beneficiaryPaternalName:x.beneficiaryPaternalName,
+          clincaName:x.clincaName,
+          clinicaId:x.clinicaId,
+          estudioDescription:x.estudioDescription,
+          estudioId:x.estudioId,
+          estudioName:x.estudioName,
+          estudioPreparacion:x.estudioPreparacion,
+          flecha:true,
+          folio:x.folio,
+          id:x.id,
+          statusSolicitude:x.statusSolicitude,
+        }
+        });
       })
     }
   }
