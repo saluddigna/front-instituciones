@@ -121,6 +121,8 @@ export default {
     logIn(){
       this.status=false
       loginService.login(this.user.toLowerCase(), this.pass).then(res => {
+        console.log(res)
+        sessionStorage.setItem('dataUser',JSON.stringify(res.data))
         sessionStorage.setItem('token', res.accesToken)
         window.location.href = '/inicio'
       }).catch(err => {

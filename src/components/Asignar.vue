@@ -32,9 +32,9 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-           <div v-for="estudio in estudioF" :key="estudio.id" class="d-flex">
-             <p class="flex-1-1">{{estudio.nombre}}</p>
-             <v-checkbox v-model="checkGenerar[estudio.id]" class="checkL" ></v-checkbox>
+           <div v-for="folio in foliosSolicitados" :key="folio.id" class="d-flex">
+             <p class="flex-1-1">{{folio.estudioName}}</p>
+             <v-checkbox v-model="folio.generar" class="checkL" ></v-checkbox>
              
            </div>
           </v-expansion-panel-content>
@@ -179,20 +179,27 @@
 <script>
 import AsignarFolio from './AsignarFolio'
 import FolioAsignado from './FolioAsignado'
+import foliosService from '../services/folios'
+
 export default {
   name: 'Asignar',
 
   components: {
     AsignarFolio,
     FolioAsignado
+  },             
+  mounted(){
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+    this.get()
   },
-
-  data: () => ({
+    data: () => ({
+    dataUser:null,
     activo:0,
     study:null,
     panel:null,
     checkGenerar:[],
     listo:false,
+    foliosSolicitados:null,
     estudios:[{
       id:1,
       nombre:'Densitometría',
@@ -238,10 +245,44 @@ export default {
     estudioF:[{id:0, nombre:'Cargando...'},],
     foliosD:[{nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:500000, preparacion:'Sin preparacion'}]
   }),
+
   methods:{
+    get(){
+      foliosService.getSolicitados(this.dataUser.institution.id).then(res=>
+    {
+       let data=res.map(x=>{
+        return{
+        folioId:x.id,
+        estudioName:x.clinicalStudy.name,
+        generar:false
+        }
+      })
+      console.log(data)
+      this.foliosSolicitados=data;
+    })
+    },
     generar(){
-      this.panel=null
-      this.listo=true
+      let foliosGenerar=[]
+      console.log(this.checkGenerar)
+      this.foliosSolicitados.map(x=>
+      {
+        if(x.generar)
+          foliosGenerar.push(x)
+      })
+      if(foliosGenerar.length==0){
+        alert('debes marcar al menos un folio para generar')
+        return
+      }
+      console.log(foliosGenerar)
+
+      foliosService.generarFolios(foliosGenerar).then(res=>{
+        console.log(res)
+        if(res.status){
+            this.get()
+            this.listo=true
+            this.panel=null
+        }
+      })
     }
   }
 };

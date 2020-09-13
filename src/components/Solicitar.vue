@@ -39,11 +39,11 @@
     <div class="botonesBajos">
       <div class="my-2">
         <v-btn
-          @click="logIn"
+          @click="solicitarFolios"
           class="letraNormal btnSolicitar"
           color="primary"
           :loading="status"
-          :disabled="!disabled"
+          :disabled="disabled"
         >Solicitar estudio <i class="mdi mdi-chevron-right"></i></v-btn>
       </div>
     </div>
@@ -113,9 +113,12 @@ export default {
     panel:0,
     folios:[{nombre:'Cargando...',cuenta:'0 estudios'},],
     solicitable:[{nombre:'Cargando...',cuenta:'0 estudios'},],
-    s:[0,0,0]
+    s:[0,0,0],
+    dataUser:null,
+    listo: false
   }),
   created() {
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
   },
   mounted() {
     estudiosService.getEstudios().then(res=>{
@@ -133,10 +136,12 @@ export default {
   methods: {
     agregar(index){
       this.disabledAdd=true;
-      foliosService.checkDisponibilidad(this.estudios[index].id,this.estudios[index].cantidad+1,3).then(res=>{
+      foliosService.checkDisponibilidad(this.estudios[index].id,this.estudios[index].cantidad+1,this.dataUser.institution.id).then(res=>{
         if(res.status==true)
           this.estudios[index].cantidad++
-        else
+        else{
+        alert('Sin Folios Disponibles')
+        }
           console.log('folios no disponibles')
          this.disabledAdd=false
 
@@ -146,6 +151,27 @@ export default {
     quitar(index){
       if(this.estudios[index].cantidad>0)
         this.estudios[index].cantidad--
+    },
+    solicitarFolios(){
+      let foliosSolicitud=[]
+      this.estudios.map(x=>
+      {
+        x.institution=this.dataUser.institution.id
+        if(x.cantidad>0)
+        foliosSolicitud.push(x)
+      })
+      if(foliosSolicitud.length==0){
+        alert('la cantidad total de folios a solictar debe ser al menos 1')
+        return
+      }
+      console.log(foliosSolicitud)
+      foliosService.solicitarFolios(foliosSolicitud).then(res=>
+      {
+        if(res.status){
+          this.listo=true
+          alert('Folios Solicitados')
+        }
+      })
     }
   }
 };
