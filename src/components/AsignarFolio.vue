@@ -147,8 +147,8 @@
     color: #616161;
     height: 40px;
   }
-  .estudiosInfo:focus{
-    outline: none;
+  .estudioInfo:focus {
+    outline: none!important;
   }
   .flechaUpDown{
     font-size: 20px;
@@ -177,7 +177,6 @@ import foliosService from '../services/folios'
 export default {
   name:'AsignarFolio',
   data: () => ({
-    flecha:[true,true,true,true,true,true,true,true],
     vista:0,
     dataUser:null,
     folioSeleccionado:{}

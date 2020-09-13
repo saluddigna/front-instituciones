@@ -2,6 +2,7 @@
   <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+        v-if="opcion=='todos'"
           color="primary"
           dark
           v-bind="attrs"
@@ -10,6 +11,9 @@
         >
          <v-icon>mdi-printer</v-icon>  Imprimir todos 
         </v-btn>
+        <div v-else-if="opcion=='solo'" class="d-flex flex-row justify-center align-center pa-1">
+            <a href="#" v-on="on" class="datosFolio text-center">Imprimir</a>
+          </div>
       </template>
       <v-card>
         <v-toolbar dark color="primary">
@@ -22,7 +26,7 @@
             <v-btn dark text @click="dialog = false">Imprimir</v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <cupon />
+        <cupon :cupones="cupon" />
       </v-card>
     </v-dialog>
 </template>
@@ -33,13 +37,27 @@ export default {
   data () {
       return {
         dialog: false,
-        notifications: false,
-        sound: true,
-        widgets: false,
       }
     },
   components: {
     Cupon
   },
+  props:{
+    opcion:String,
+    cupon:[]
+  },
+  mounted(){
+    if(this.opcion=='solo'){
+      this.cupon=[this.cupon]
+    }
+  },
+  directives: {
+  focus: {
+    // Definición de directiva
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
 }
 </script>

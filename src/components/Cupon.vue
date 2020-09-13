@@ -8,16 +8,16 @@
             </div>
             <p class="sd-titulo-preparacion">Preparación</p>
             <div class="sd-item-preparacion">
-                {{cupon.preparacion}}
+                {{cupon.estudioPreparacion}}
             </div>
         </div>
         <div class="sd-item-content">
             <div class="sd-datos-folio">
-                <p class="sd-sucursal">Valido solo en Clínica {{cupon.clinica}}</p>
+                <p class="sd-sucursal">Valido solo en Clínica {{cupon.clincaName}}</p>
                 <div class="sd-content-folio">
                     <p class="sd-text">Folio</p>
                     <p class="sd-folio">{{cupon.folio}}</p>
-                    <p class="sd-estudio">{{cupon.estudio}}</p>
+                    <p class="sd-estudio">{{cupon.estudioName}}</p>
                 </div>
                 <div class="sd-codigo-barras">
                     <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
@@ -132,6 +132,7 @@
 .sd-estudio{
     font-size: 10px;
     margin: 0;
+    text-align: center;
 }
 </style>
 <script>
@@ -142,31 +143,9 @@ export default {
     'barcode': VueBarcode
   },
   data:()=>({
-    cupones:[{
-      folio:1429091561,
-      estudio:'Papanicolaou',
-      preparacion:'3 Días Antes De La Prueba: No Tener Relaciones Sexuales, No Realizarse Lavados Vaginales,No Utilizar Medicamentos, Crema, Desodorante, Lubricantes O Espumas Vaginales. Acudir A La Toma Del Estudio Mínimo 5 Días Antes O Después Del Periodo De Menstruación.',
-      vigencia:'31/12/2020',
-      clinica:'Culiacán'
-    },{
-      folio:1429091561,
-      estudio:'Papanicolaou',
-      preparacion:'3 Días Antes De La Prueba: No Tener Relaciones Sexuales, No Realizarse Lavados Vaginales,No Utilizar Medicamentos, Crema, Desodorante, Lubricantes O Espumas Vaginales. Acudir A La Toma Del Estudio Mínimo 5 Días Antes O Después Del Periodo De Menstruación.',
-      vigencia:'31/12/2020',
-      clinica:'Culiacán'
-    },{
-      folio:1429091561,
-      estudio:'Papanicolaou',
-      preparacion:'3 Días Antes De La Prueba: No Tener Relaciones Sexuales, No Realizarse Lavados Vaginales,No Utilizar Medicamentos, Crema, Desodorante, Lubricantes O Espumas Vaginales. Acudir A La Toma Del Estudio Mínimo 5 Días Antes O Después Del Periodo De Menstruación.',
-      vigencia:'31/12/2020',
-      clinica:'Culiacán'
-    },{
-      folio:1429091561,
-      estudio:'Papanicolaou',
-      preparacion:'3 Días Antes De La Prueba: No Tener Relaciones Sexuales, No Realizarse Lavados Vaginales,No Utilizar Medicamentos, Crema, Desodorante, Lubricantes O Espumas Vaginales. Acudir A La Toma Del Estudio Mínimo 5 Días Antes O Después Del Periodo De Menstruación.',
-      vigencia:'31/12/2020',
-      clinica:'Culiacán'
-    },],
   }),
+  props:{
+    cupones:[]
+  },
 }
 </script>
