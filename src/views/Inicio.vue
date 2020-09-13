@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" md="6" class="offset-md-6">
           <h2 class="text-center">{{institucion}}</h2>
-          <h3 class="text-center">{{ext}}</h3>
+          <!-- <h3 class="text-center">{{ext}}</h3> -->
           <v-card class="h-75">
             <div class="tabs d-flex px-5">
               <div class="tab" @click="activar=0" :class="{'activo': activar==0}">
@@ -75,7 +75,7 @@ export default {
     Asignar
   },
   data: () => ({
-    institucion:'Universidad Autónoma de Sinaloa',
+    institucion:JSON.parse(sessionStorage.getItem('dataUser')).institution.name,
     ext:'Facultad de Ingeniería',
     activar:0
   }),

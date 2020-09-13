@@ -24,14 +24,13 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <div v-for="solicitar in solicitable" :key="solicitar.id" class="fSolicitados">
-              <div class="float-right">
-                <i class="mdi mdi-minus"></i>
-                <input type="number" value="0" class="contador" />
-                <i class="mdi mdi-plus-thick"></i>
-              </div>
-                
-              <p>{{solicitar.nombre}}</p>
+            <div v-for="(estudio,index) in estudios" :key="estudio.id" class="fSolicitados">
+              <div class="float-right" >
+                <a class="mdi mdi-minus" @click="quitar(index)"></a>
+                <input disabled type="number" value="0" class="contador" v-model="estudio.cantidad" />
+                <a :disabled="disabledAdd" class="mdi mdi-plus-thick" @click="agregar(index)"></a>
+              </div>              
+              <p>{{estudio.name}}</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -40,11 +39,11 @@
     <div class="botonesBajos">
       <div class="my-2">
         <v-btn
-          @click="logIn"
+          @click="solicitarFolios"
           class="letraNormal btnSolicitar"
           color="primary"
           :loading="status"
-          :disabled="!disabled"
+          :disabled="disabled"
         >Solicitar estudio <i class="mdi mdi-chevron-right"></i></v-btn>
       </div>
     </div>
@@ -98,18 +97,83 @@
 }
 </style>
 <script>
+import estudiosService from '../services/estudios' ;
+import foliosService from '../services/folios' ;
+
 export default {
+
   name: "Solicitar",
 
   components: {},
 
   data: () => ({
+    estudios:null,
     status:false,
     disabled:false,
+    disabledAdd:false,
     panel:0,
     folios:[{nombre:'Cargando...',cuenta:'0 estudios'},],
     solicitable:[{nombre:'Cargando...',cuenta:'0 estudios'},],
-    s:[0,0,0]
+    s:[0,0,0],
+    dataUser:null,
+    listo: false
   }),
+  created() {
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+  },
+  mounted() {
+    estudiosService.getEstudios().then(res=>{
+      let data=res.map(x=>{
+        return{
+        id:x.id,
+        name:x.name,
+        cantidad:0
+        }
+      })
+      console.log(data)
+      this.estudios=data;
+    })
+  },
+  methods: {
+    agregar(index){
+      this.disabledAdd=true;
+      foliosService.checkDisponibilidad(this.estudios[index].id,this.estudios[index].cantidad+1,this.dataUser.institution.id).then(res=>{
+        if(res.status==true)
+          this.estudios[index].cantidad++
+        else{
+        alert('Sin Folios Disponibles')
+        }
+          console.log('folios no disponibles')
+         this.disabledAdd=false
+
+      })
+      
+    },
+    quitar(index){
+      if(this.estudios[index].cantidad>0)
+        this.estudios[index].cantidad--
+    },
+    solicitarFolios(){
+      let foliosSolicitud=[]
+      this.estudios.map(x=>
+      {
+        x.institution=this.dataUser.institution.id
+        if(x.cantidad>0)
+        foliosSolicitud.push(x)
+      })
+      if(foliosSolicitud.length==0){
+        alert('la cantidad total de folios a solictar debe ser al menos 1')
+        return
+      }
+      console.log(foliosSolicitud)
+      foliosService.solicitarFolios(foliosSolicitud).then(res=>
+      {
+        if(res.status){
+          this.listo=true
+          alert('Folios Solicitados')
+        }
+      })
+    }
+  }
 };
 </script>
