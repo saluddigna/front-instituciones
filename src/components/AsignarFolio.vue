@@ -4,16 +4,16 @@
       <v-card v-for="(folio,i) in foliosDisponibles" :key="folio.id">
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
           <div class="rounded-circle iconEstudio mx-2">
-            <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+            <i v-if="estudio.id==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
           </div>
           <span class="tituloEstudio">{{estudio.nombre}}</span>
         </div>
@@ -22,7 +22,7 @@
             <button class="estudioInfo" @click="flecha[i]= true">
               <span class="text-center">Datos <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-up':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-down':!flecha[i]}"></i></span>
             </button>
-            <button class="estudioInfo" @click="flecha[i]= false">
+            <button class="estudioInfo bl-1-gray" @click="flecha[i]= false">
               <span class="text-center">Preparación <i color="primary" class="mdi flechaUpDown" :class="{'mdi-chevron-down':(flecha[i]||flecha[i]===undefined||flecha[i]==null),'mdi-chevron-up':!flecha[i]}"></i></span>
             </button>
           </div>
@@ -51,16 +51,16 @@
       <v-card>
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
             <div class="rounded-circle iconEstudio mx-2">
-              <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+              <i v-if="estudio.id==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
+          <i v-else-if="estudio.id==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
             </div>
             <span class="tituloEstudio">{{estudio.nombre}}</span>
           </div>
@@ -153,6 +153,10 @@
   }
   .infoFolio{
     line-height: 28px;
+    border-top: 1px solid #E5E5E5;
+  }
+  .bl-1-gray{
+    border-left: 1px solid #E5E5E5;
   }
   .prepaFolio{
     height: 160px;

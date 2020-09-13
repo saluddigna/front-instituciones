@@ -60,6 +60,7 @@
 }
 .h-94{
   height: 94%;
+  margin-top: 2px;
 }
 .botonesBajos{
   flex: 0 1 auto;

@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-column h-94">
     <div class="flex-1-1 contenedor" v-if="!listo">
-      <div class="sd-navs-areas">
+      <div v-show="panel!=2" class="sd-navs-areas">
         <div class="sd-previous" @click="derecha=false">
             <i class="icon-angle-left-4"></i>
         </div>
@@ -9,7 +9,7 @@
             <i class="icon-angle-right-4"></i>
         </div>
       </div>
-      <div class="d-flex miniCarrusel flex-row" :class="{'carruselD':derecha}">
+      <div v-show="panel!=2" class="miniCarrusel flex-row" :class="{'carruselD':derecha, 'd-flex': panel!=2}">
         <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="activo=estudio.id, study=estudio" >
           <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
           <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
@@ -58,7 +58,7 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <folioAsignado />
+            <folioAsignado :estudios="estudios" />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
