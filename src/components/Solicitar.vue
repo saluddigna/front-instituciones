@@ -23,7 +23,7 @@
               <v-icon color="primary" class="flechaAzul">$expand</v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content class="contenedor-estudios">
             <div v-for="(estudio,index) in estudios" :key="estudio.id" class="fSolicitados">
               <div class="float-right" >
                 <a class="mdi mdi-minus" @click="quitar(index)"></a>
@@ -129,6 +129,10 @@
   border-radius: 4px;
   width: 50px;
   text-align: end;
+}
+.contenedor-estudios{
+  max-height: 250px;
+  overflow-y: scroll;
 }
 </style>
 <script>
