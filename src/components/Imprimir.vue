@@ -23,7 +23,7 @@
           <v-toolbar-title><v-icon>mdi-printer</v-icon> Vista previa</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark text v-print="'imprimir'" @click="imprimir">Imprimir</v-btn>
+            <v-btn dark text @click="imprimir">Imprimir</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div :id="id" ref="printMe">
@@ -75,6 +75,7 @@ export default {
       ventana.document.close();
       ventana.focus();
       ventana.print();
+      this.dialog=false
     },
 
   }

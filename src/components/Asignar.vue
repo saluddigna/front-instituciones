@@ -37,7 +37,7 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-           <div v-for="folio in foliosSolicitados" :key="folio.id" class="d-flex">
+           <div  v-for="folio in foliosSolicitados" :key="folio.id" class="d-flex">
             <!-- {{folio}},{{activo}} -->
              <p v-if="folio.parentEstudioId==activo || activo==null" class="flex-1-1">{{folio.estudioName}}</p>
              <v-checkbox v-if="folio.parentEstudioId==activo || activo==null" v-model="folio.generar" class="checkL" ></v-checkbox>
@@ -53,7 +53,10 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <asignarFolio :foliosDisponibles="foliosD" :estudio="study" />
+            <asignarFolio v-if="foliosD.length!=0" :foliosDisponibles="foliosD" :estudio="study" />
+            <div v-else>
+              Aun no se ha generado ningun folio de {{study.nombre}}.
+            </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel >
@@ -178,12 +181,8 @@ export default {
   data: () => ({
     status:null,
     dataUser:null,
-    activo:1,
-    study:{
-      id:1,
-      nombre:'Densitometría',
-      color:'#7F95A1'
-    },
+    activo:null,
+    study:null,
     panel:null,
     derecha:false,
     checkGenerar:[],
@@ -207,7 +206,7 @@ export default {
       color:'#60A463'
     },{
       id:4,
-      nombre:'Papanicolao',
+      nombre:'Papanicolaou',
       color:'#AD65C2'
     },{
       id:5,
@@ -232,7 +231,8 @@ export default {
     },
     ],
     estudioF:[{id:0, nombre:'Cargando...'},],
-    foliosD:null,foliosA:null
+    foliosD:[{}],
+    foliosA:[{}]
   }),
 
   methods:{

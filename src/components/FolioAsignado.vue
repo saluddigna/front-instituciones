@@ -5,10 +5,11 @@
       outlined
       label="Buscar por Nombre"
       append-icon="mdi-magnify"
+      :loading="loading"
       dense
     ></v-text-field>
-    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" />
-    <v-row>
+    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+    <v-row >
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudios[folio.estudioId-1].color">
@@ -77,7 +78,8 @@ export default {
     flecha:[true,true,true,true,true,true,true,true],
     dataUser:null,
     foliosA:null,
-    filtroSearch:null
+    filtroSearch:null,
+    loading:false
     // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
   mounted(){
@@ -94,13 +96,12 @@ export default {
   },
   watch: {
       filtroSearch: function () {
+        this.loading=true
         if (!this.awaitingSearch) {
             setTimeout(() => {
               this.getFoliosAsignados(this.filtroSearch)
-              this.awaitingSearch = false;
           }, 2000); // 1 sec delay
         }
-        this.awaitingSearch = true;
       
       }
   },
@@ -127,6 +128,7 @@ export default {
         }
         });
         this.foliosAsignados=data;
+        this.loading=false
       })
     },
     llenarDatos(f){
