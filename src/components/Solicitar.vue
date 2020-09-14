@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column h-94">
-    <div v-if="!listos" class="flex-1-1">
+    <div v-if="!listo" class="flex-1-1">
       <v-expansion-panels accordion flat v-model="panel">
         <v-expansion-panel >
           <v-expansion-panel-header>
@@ -36,13 +36,13 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
-    <div v-else>
+    <div v-else-if="listo">
       <div class="d-flex flex-column pa-10 justify-center align-center">
         <h1 class="text-center gris">Folios generados</h1>
         <img src="../assets/imgs/iconos/Check.svg" alt="Palomita Verde">
          <div class="my-2">
           <v-btn
-            @click="listo=false"
+            @click="aceptar"
             class="letraNormal mt-14"
             color="success"
           >Aceptar</v-btn>
@@ -163,17 +163,7 @@ export default {
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
   },
   mounted() {
-    estudiosService.getEstudios(this.dataUser.institution.id).then(res=>{
-      let data=res.map(x=>{
-        return{
-        id:x.id,
-        name:x.description,
-        cantidad:0
-        }
-      })
-      console.log(data)
-      this.estudios=data;
-    })
+    this.getEstudios()
   },
   methods: {
     agregar(index){
@@ -217,6 +207,22 @@ export default {
           this.text='Folios solicitados'
         }
       })
+    },
+    getEstudios(){
+      estudiosService.getEstudios(this.dataUser.institution.id).then(res=>{
+      let data=res.map(x=>{
+        return{
+        id:x.id,
+        name:x.description,
+        cantidad:0
+        }
+      })
+      this.estudios=data
+    })
+    },
+    aceptar(){
+      this.listo=false
+      this.getEstudios()
     }
   }
 };
