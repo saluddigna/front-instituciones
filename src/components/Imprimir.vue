@@ -26,7 +26,7 @@
             <v-btn dark text v-print="'imprimir'" @click="imprimir">Imprimir</v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <div id="imprimir" ref="printMe">
+        <div :id="id" ref="printMe">
           <cupon :cupones="cupon" />
         </div>
         <div  >
@@ -51,7 +51,8 @@ export default {
   },
   props:{
     opcion:String,
-    cupon:[]
+    cupon:[],
+    id:null,
   },
   methods: {
     async imprimir(){
@@ -63,7 +64,7 @@ export default {
       // this.output = await this.$html2canvas(el, options)
       // console.log('Imprimiendo')
       let imprimir = '';
-      imprimir=document.getElementById('imprimir')
+      imprimir=document.getElementById(this.id)
       var ventana = '';
       ventana=window.open('', 'PRINT', 'height=400,width=600')
       ventana.document.write('<html><head><title>' + document.title + '</title>');

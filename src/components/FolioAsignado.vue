@@ -8,7 +8,7 @@
       append-icon="mdi-magnify"
       dense
     ></v-text-field>
-    <imprimir :opcion="'todos'" :cupon="foliosAsignados" />
+    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" />
     <v-row>
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
@@ -56,7 +56,7 @@
           <!-- <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#"  class="datosFolio text-center">Imprimir</a>
           </div> -->
-          <imprimir :opcion="'solo'" :cupon="[folio]" />
+          <imprimir :opcion="'solo'" :cupon="[folio]" :id="folio.folio" />
         </v-card>
       </v-col>
     </v-row>
