@@ -142,7 +142,14 @@
   .estudioCarrusel i{
     font-size: 30px;
   }
+  .miniCarrusel{
+    transform: translateX(0px);
+    transition: 0.3s all;
+    animation: 0.3s all;
+  }
   .carruselD{
+    transition: 0.3s all;
+    animation: 0.3s all;
     transform: translateX(-90px);
   }
 </style>
