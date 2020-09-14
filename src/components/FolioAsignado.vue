@@ -2,10 +2,12 @@
   <div>
     <v-text-field
       v-model="filtroSearch"
-      v-on:change="changeFiltro()"
+      @keypress.enter="changeFiltro()"
+      @change="changeFiltro()"
       outlined
       label="Buscar por Nombre"
       append-icon="mdi-magnify"
+      :loading="loading"
       dense
     ></v-text-field>
     <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
@@ -78,7 +80,8 @@ export default {
     flecha:[true,true,true,true,true,true,true,true],
     dataUser:null,
     foliosA:null,
-    filtroSearch:null
+    filtroSearch:null,
+    loading:false
     // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
   mounted(){
@@ -124,6 +127,7 @@ export default {
         });
         console.log(data)
         this.foliosAsignados=data;
+        this.loading=false
       })
     },
     llenarDatos(f){
@@ -131,6 +135,7 @@ export default {
     },
     changeFiltro(){
       console.log(this.filtroSearch)
+      this.loading=true
       this.getFoliosAsignados(this.filtroSearch)
     }
   }
