@@ -51,7 +51,7 @@
         
       
     </div>
-    <div class="botonesBajos">
+    <div v-show="!listo" class="botonesBajos">
       <div class="my-2">
         <v-btn
           @click="solicitarFolios"
