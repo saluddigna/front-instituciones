@@ -67,8 +67,8 @@
             </div>
             <span class="tituloEstudio">{{estudio.nombre}}</span>
           </div>
-          <div class="pa-5 d-flex flex-column justify-center">
-            <div v-if="vista==1">
+          <div >
+            <div v-if="vista==1" class="pa-5 d-flex flex-column justify-center">
               <v-text-field
                 label="Nombre"
                 v-model="folioSeleccionado.foliosToAssign[0].name"

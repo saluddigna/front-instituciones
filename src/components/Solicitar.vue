@@ -24,13 +24,18 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content class="contenedor-estudios">
-            <div v-for="(estudio,index) in estudios" :key="estudio.id" class="fSolicitados">
-              <div class="float-right" >
-                <a class="mdi mdi-minus" @click="quitar(index)"></a>
-                <input disabled type="number" value="0" class="contador" v-model="estudio.cantidad" />
-                <a :disabled="disabledAdd" class="mdi mdi-plus-thick" @click="agregar(index)"></a>
-              </div>              
-              <p>{{estudio.name}}</p>
+            <div v-if="estudios.length!=0">
+              <div v-for="(estudio,index) in estudios" :key="estudio.id" class="fSolicitados">
+                <div class="float-right" >
+                  <a class="mdi mdi-minus" @click="quitar(index)"></a>
+                  <input disabled type="number" value="0" class="contador" v-model="estudio.cantidad" />
+                  <a :disabled="disabledAdd" class="mdi mdi-plus-thick" @click="agregar(index)"></a>
+                </div>              
+                <p>{{estudio.name}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <p>Sin estudios</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -146,7 +151,7 @@ export default {
   components: {},
 
   data: () => ({
-    estudios:null,
+    estudios:[{}],
     status:false,
     disabled:false,
     disabledAdd:false,
