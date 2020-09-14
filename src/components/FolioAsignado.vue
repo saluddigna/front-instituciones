@@ -106,7 +106,7 @@ export default {
     // },
    getFoliosAsignados(filtro){
      console.log(filtro)
-      foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
+      foliosService.getAsignados(this.dataUser.institution.id,filtro).then(res=>{
         let data=res.map(x=>{
         return{
           beneficiaryId:x.beneficiaryId,
@@ -134,7 +134,7 @@ export default {
     },
     changeFiltro(){
       console.log(this.filtroSearch)
-      // this.getFoliosAsignados(this.filtroSearch)
+      this.getFoliosAsignados(this.filtroSearch)
     }
   }
 

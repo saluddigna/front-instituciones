@@ -174,8 +174,8 @@ export default {
         else{
         this.snackbar=true
         this.text='Sin folios disponibles'
+        console.log('folios no disponibles')
         }
-          console.log('folios no disponibles')
          this.disabledAdd=false
 
       })

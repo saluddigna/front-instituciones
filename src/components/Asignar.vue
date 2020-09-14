@@ -308,7 +308,7 @@ export default {
       })
     },
     getFoliosAsignados(){
-      foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
+      foliosService.getAsignados(this.dataUser.institution.id,null).then(res=>{
         let data=res.map(x=>{
         return{
           beneficiaryId:x.beneficiaryId,
