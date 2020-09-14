@@ -8,8 +8,8 @@
       append-icon="mdi-magnify"
       dense
     ></v-text-field>
-    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" />
-    <v-row>
+    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+    <v-row v-if="foliosAsignados.lenght!=0">
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudios[folio.estudioId-1].color">
@@ -60,6 +60,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <div v-else>
+      No se ha asignado ningun folio aún
+    </div>
   </div>
 </template>
 <style>
@@ -90,7 +93,7 @@ export default {
   }, 
   props:{
     estudios:{},
-   foliosAsignados:null,
+   foliosAsignados:[{}],
     
   },
   methods:{ 

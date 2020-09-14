@@ -75,6 +75,7 @@ export default {
       ventana.document.close();
       ventana.focus();
       ventana.print();
+      this.dialog=false
     },
 
   }
