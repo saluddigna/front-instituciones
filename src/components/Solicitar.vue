@@ -163,7 +163,7 @@ export default {
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
   },
   mounted() {
-    estudiosService.getEstudios().then(res=>{
+    estudiosService.getEstudios(this.dataUser.institution.id).then(res=>{
       let data=res.map(x=>{
         return{
         id:x.id,

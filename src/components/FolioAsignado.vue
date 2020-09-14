@@ -1,6 +1,8 @@
 <template>
   <div>
     <v-text-field
+      v-model="filtroSearch"
+      v-on:change="changeFiltro()"
       outlined
       label="Buscar por Nombre"
       append-icon="mdi-magnify"
@@ -68,7 +70,7 @@
 </style>
 <script>
 import Imprimir from './Imprimir'
-// import foliosService from '../services/folios'
+import foliosService from '../services/folios'
 
 export default {
   name:'FolioAsignado',
@@ -76,6 +78,7 @@ export default {
     flecha:[true,true,true,true,true,true,true,true],
     dataUser:null,
     foliosA:null,
+    filtroSearch:null
     // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
   mounted(){
@@ -98,31 +101,37 @@ export default {
     //     this.foliosAsignados[index].flecha=!this.foliosAsignados[index].flecha
     //   console.log(this.foliosAsignados[index].flecha,index)
     // },
-    // async getFoliosAsignados(){
-    //   await foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
-    //     res.map(x=>{
-    //     return{
-    //       beneficiaryId:x.beneficiaryId,
-    //       beneficiaryMaternalName:x.beneficiaryMaternalName,
-    //       beneficiaryPaternalName:x.beneficiaryPaternalName,
-    //       clincaName:x.clincaName,
-    //       clinicaId:x.clinicaId,
-    //       estudioDescription:x.estudioDescription,
-    //       estudioId:x.estudioId,
-    //       estudioName:x.estudioName,
-    //       estudioPreparacion:x.estudioPreparacion,
-    //       flecha:false,
-    //       folio:x.folio,
-    //       id:x.id,
-    //       statusSolicitude:x.statusSolicitude,
-    //     }
-    //     });
-    //     this.foliosAsignados=res;
-    //     console.log(this.foliosAsignados)
-    //   })
-    // }
+   getFoliosAsignados(filtro){
+     console.log(filtro)
+      foliosService.getAsignados(this.dataUser.institution.id).then(res=>{
+        let data=res.map(x=>{
+        return{
+          beneficiaryId:x.beneficiaryId,
+          beneficiaryName:x.beneficiaryName,
+          beneficiaryMaternalName:x.beneficiaryMaternalName,
+          beneficiaryPaternalName:x.beneficiaryPaternalName,
+          clincaName:x.clincaName,
+          clinicaId:x.clinicaId,
+          estudioDescription:x.estudioDescription,
+          estudioId:x.estudioId,
+          estudioName:x.estudioName,
+          estudioPreparacion:x.estudioPreparacion,
+          flecha:true,
+          folio:x.folio,
+          id:x.id,
+          statusSolicitude:x.statusSolicitude,
+        }
+        });
+        console.log(data)
+        this.foliosAsignados=data;
+      })
+    },
     llenarDatos(f){
       this.foliosA=f
+    },
+    changeFiltro(){
+      console.log(this.filtroSearch)
+      // this.getFoliosAsignados(this.filtroSearch)
     }
   }
 
