@@ -3,7 +3,7 @@
     <div v-for="cupon in cupones" :key="cupon.folio" class="sd-item-cupon">
         <div class="sd-item-content">
             <div class="sd-item-logo">
-                <img src="../assets/imgs/logo.svg" alt="Logo Salud Digna">
+                <img src="../assets/imgs/logo.svg" width="10px" alt="Logo Salud Digna">
                 <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
             </div>
             <p class="sd-titulo-preparacion">Preparación</p>

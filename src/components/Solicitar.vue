@@ -131,7 +131,7 @@
   text-align: end;
 }
 .contenedor-estudios{
-  max-height: 250px;
+  max-height: 480px;
   overflow-y: scroll;
 }
 </style>

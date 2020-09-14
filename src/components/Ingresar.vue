@@ -22,15 +22,11 @@
               class="inputPass required"
               placeholder="Contraseña"
               @keypress.enter="logIn"
-              required
             />
           </div>
-          <div class="alert alert-danger mb-none alert-dismissible fade" :class="{show: this.alert}" role="alert">
-                            {{error}}
-                            <!-- <button type="button" class="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button> -->
-                        </div>
+          <div class="alert alert-danger mb-none alert-dismissible fade" v-if="alert" role="alert">
+              {{error}}
+          </div>
           <div class="my-2" style="padding-top:2em">
             <v-btn 
               @click="logIn"

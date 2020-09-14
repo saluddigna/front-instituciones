@@ -11,16 +11,21 @@
       </div>
       <div v-show="panel!=2" class="miniCarrusel flex-row" :class="{'carruselD':derecha, 'd-flex': panel!=2}">
         <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="changeSelected(estudio.id,estudio)" >
-          <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-          <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+              <i v-if="estudio.id==1" :class="{'activo':activo==estudio.id}" class="icon-densitometria" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==2" :class="{'activo':activo==estudio.id}" class="icon-laboratorio" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==3" :class="{'activo':activo==estudio.id}" class="icon-mastografia" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==4" :class="{'activo':activo==estudio.id}" class="icon-papanicolau" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==5" :class="{'activo':activo==estudio.id}" class="icon-rayos-x" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==6" :class="{'activo':activo==estudio.id}" class="icon-ultrasonido" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==7" :class="{'activo':activo==estudio.id}" class="icon-electrocardiograma" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==8" :class="{'activo':activo==estudio.id}" class="icon-tomografia" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==9" :class="{'activo':activo==estudio.id}" class="icon-resonancia" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+              <i v-else-if="estudio.id==10" :class="{'activo':activo==estudio.id}" class="icon-nutricion2" :style="'color:'+estudio.color" v-bind="attrs" v-on="on"></i>
+          </template>
+          <span>{{estudio.nombre}}</span>
+        </v-tooltip>
         </div>
       </div>
       <v-expansion-panels accordion v-model="panel">
