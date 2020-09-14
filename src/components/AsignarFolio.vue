@@ -3,18 +3,18 @@
     <v-row v-if="vista==0">
       <v-col  cols="6" class="pa-2" v-for="(folio) in foliosDisponibles" :key="folio.id">
         <v-card class="card">
-          <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
+          <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')">
             <div class="rounded-circle iconEstudio mx-2">
-              <i v-if="folio.parentEstudioId==1" class="icon-densitometria" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==2" class="icon-laboratorio" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==3" class="icon-mastografia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==4" class="icon-papanicolau" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==5" class="icon-rayos-x" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==6" class="icon-ultrasonido" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==8" class="icon-tomografia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==9" class="icon-resonancia" :style="'color:'+estudio.color"></i>
-            <i v-else-if="folio.parentEstudioId==10" class="icon-nutricion2" :style="'color:'+estudio.color"></i>
+              <i v-if="folio.parentEstudioId==1" class="icon-densitometria" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==2" class="icon-laboratorio" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==3" class="icon-mastografia" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==4" class="icon-papanicolau" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==5" class="icon-rayos-x" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==6" class="icon-ultrasonido" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==7" class="icon-electrocardiograma" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==8" class="icon-tomografia" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==9" class="icon-resonancia" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
+            <i v-else-if="folio.parentEstudioId==10" class="icon-nutricion2" :style="'color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')"></i>
             </div>
             <span class="tituloEstudio">{{folio.estudioName}}</span>
           </div>
