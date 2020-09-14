@@ -1,5 +1,5 @@
 let config = {
-    BASEURL: process.env.BASEURL || 'https://9b086f361e6c.ngrok.io'
+    BASEURL: process.env.BASEURL || 'https://instituciones-api.salud-digna.site'
 }
 
 export default config
