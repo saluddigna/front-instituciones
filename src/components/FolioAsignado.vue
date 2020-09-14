@@ -2,7 +2,6 @@
   <div>
     <v-text-field
       v-model="filtroSearch"
-      v-on:change="changeFiltro()"
       outlined
       label="Buscar por Nombre"
       append-icon="mdi-magnify"
@@ -93,14 +92,19 @@ export default {
    foliosAsignados:null,
     
   },
+  watch: {
+      filtroSearch: function () {
+        if (!this.awaitingSearch) {
+            setTimeout(() => {
+              this.getFoliosAsignados(this.filtroSearch)
+              this.awaitingSearch = false;
+          }, 2000); // 1 sec delay
+        }
+        this.awaitingSearch = true;
+      
+      }
+  },
   methods:{ 
-    // clicFlecha(index){
-    //   if (this.foliosAsignados[index].flecha==undefined){
-    //       this.foliosAsignados[index].flecha=true
-    //   }else
-    //     this.foliosAsignados[index].flecha=!this.foliosAsignados[index].flecha
-    //   console.log(this.foliosAsignados[index].flecha,index)
-    // },
    getFoliosAsignados(filtro){
      console.log(filtro)
       foliosService.getAsignados(this.dataUser.institution.id,filtro).then(res=>{
@@ -122,18 +126,16 @@ export default {
           statusSolicitude:x.statusSolicitude,
         }
         });
-        console.log(data)
         this.foliosAsignados=data;
       })
     },
     llenarDatos(f){
       this.foliosA=f
     },
-    changeFiltro(){
-      console.log(this.filtroSearch)
-      this.getFoliosAsignados(this.filtroSearch)
-    }
+    // changeFiltro(){
+    //   console.log(this.filtroSearch)
+    //   this.getFoliosAsignados(this.filtroSearch)
+    // }
   }
-
 }
 </script>
