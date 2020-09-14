@@ -56,20 +56,20 @@ export default {
   methods: {
     async imprimir(){
       
-      const el = this.$refs.printMe
-      const options = {
-        type: 'dataURL'
-      }
-      this.output = await this.$html2canvas(el, options)
-      console.log('Imprimiendo')
-      // let imprimir = '';
-      // imprimir=document.getElementById('imprimir')
+      // const el = this.$refs.printMe
+      // const options = {
+      //   type: 'dataURL'
+      // }
+      // this.output = await this.$html2canvas(el, options)
+      // console.log('Imprimiendo')
+      let imprimir = '';
+      imprimir=document.getElementById('imprimir')
       var ventana = '';
       ventana=window.open('', 'PRINT', 'height=400,width=600')
       ventana.document.write('<html><head><title>' + document.title + '</title>');
       ventana.document.write('<link rel="stylesheet" href="cupon.css">');
       ventana.document.write('</head><body >');
-      ventana.document.write('<body><img src="' + this.output + '"/>');
+      ventana.document.write(imprimir.innerHTML);
       ventana.document.write('</body></html>');
       ventana.document.close();
       ventana.focus();
