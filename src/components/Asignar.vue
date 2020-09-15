@@ -184,13 +184,14 @@ export default {
     status:null,
     dataUser:null,
     activo:null,
-    study:null,
+    study: null,
     panel:null,
     derecha:false,
     checkGenerar:[],
     listo:false,
     foliosSolicitados:null,
-    estudios:[{
+    estudios:[
+      {
       id:1,
       nombre:'Densitometría',
       color:'#7F95A1'
@@ -338,6 +339,7 @@ export default {
       }else{
         this.activo=estudioId
         this.study=estudio
+        console.log(this.study);
       }
       this.getFoliosGenerados()
       // console.log(this.foliosSolicitados,this.activo)

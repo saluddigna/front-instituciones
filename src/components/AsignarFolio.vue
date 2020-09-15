@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="vista==0" >
-      <v-col  cols="6" class="pa-2" v-for="(folio) in foliosDisponibles" :key="folio.id">
+      <v-col  cols="6" class="pa-2" v-for="(folio,index) in foliosDisponibles" :key="folio.id">
         <v-card class="card">
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')">
             <div class="rounded-circle iconEstudio mx-2">
@@ -44,28 +44,28 @@
           </div>
           <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio)">Omitir datos</a>
-            <a href="#" @click="llenarDatos(folio)" class="datosFolio text-center">Llenar datos</a>
+            <a href="#" @click="llenarDatos(folio,index)" class="datosFolio text-center">Llenar datos</a>
           </div>
         </v-card>
       </v-col>
     </v-row>
     <v-col v-else cols="12" class="pa-0">
       <v-card>
-        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudio.color">
+        <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+(estudio!=null?estudio.color:'rgb(246 97 0)')">
             <div class="rounded-circle iconEstudio mx-2">
-              <i v-if="estudio.id==1" class="icon-densitometria" ></i>
+              <i v-if="foliosDisponibles[selectedIndex].id==1" class="icon-densitometria" ></i>
               <!-- :style="'color:'+estudio.color" -->
-          <i v-else-if="estudio.id==2" class="icon-laboratorio" ></i>
-          <i v-else-if="estudio.id==3" class="icon-mastografia" ></i>
-          <i v-else-if="estudio.id==4" class="icon-papanicolau"></i>
-          <i v-else-if="estudio.id==5" class="icon-rayos-x"></i>
-          <i v-else-if="estudio.id==6" class="icon-ultrasonido" ></i>
-          <i v-else-if="estudio.id==7" class="icon-electrocardiograma"></i>
-          <i v-else-if="estudio.id==8" class="icon-tomografia" ></i>
-          <i v-else-if="estudio.id==9" class="icon-resonancia"></i>
-          <i v-else-if="estudio.id==10" class="icon-nutricion2" ></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==2" class="icon-laboratorio" ></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==3" class="icon-mastografia" ></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==4" class="icon-papanicolau"></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==5" class="icon-rayos-x"></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==6" class="icon-ultrasonido" ></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==7" class="icon-electrocardiograma"></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==8" class="icon-tomografia" ></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==9" class="icon-resonancia"></i>
+          <i v-else-if="foliosDisponibles[selectedIndex].id==10" class="icon-nutricion2" ></i>
             </div>
-            <span class="tituloEstudio">{{estudio.nombre}}</span>
+            <span class="tituloEstudio">{{foliosDisponibles[selectedIndex].estudioName}}</span>
           </div>
           <div >
             <div v-if="vista==1" class="pa-5 d-flex flex-column justify-center">
@@ -88,7 +88,6 @@
                 dense
               ></v-text-field>
               <v-text-field
-              :items="items"
               v-model="folioSeleccionado.foliosToAssign[0].clinicaName"
               label="Clínica"
               outlined
@@ -181,7 +180,8 @@ export default {
     vista:0,
     dataUser:null,
     folioSeleccionado:{},
-    ver:false
+    ver:false,
+    selectedIndex:null
   }),
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
@@ -190,15 +190,18 @@ export default {
   },
   props:{
     foliosDisponibles:null,
-    estudio:{},
+    estudio:{color:null,},
     
   },
   methods:{
-    llenarDatos(folio){
+    llenarDatos(folio,index){
+      console.log(folio)
+      this.selectedIndex=index
       let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:folio.beneficiaryName,paternal:folio.beneficiaryPaternalName,maternal:folio.beneficiaryMaternalName}]}
       this.folioSeleccionado=selected
       console.log(this.folioSeleccionado.foliosToAssign[0].folio)
       this.vista=1
+      console.log(this.vista)
     },
     guardarFolio(){
       foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
