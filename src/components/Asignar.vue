@@ -54,6 +54,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <asignarFolio v-if="foliosD.length!=0" :foliosDisponibles="foliosD" :estudio="study" />
+            
             <div v-else>
               Aun no se ha generado ningun folio de {{study.nombre}}.
             </div>
@@ -266,7 +267,7 @@ export default {
           foliosGenerar.push(x)
       })
       if(foliosGenerar.length==0){
-        alert('debes marcar al menos un folio para generar')
+        alert('Debes marcar al menos un folio para generar')
         return
       }
       console.log(foliosGenerar)

@@ -4,7 +4,7 @@
       <v-expansion-panels accordion flat v-model="panel">
         <v-expansion-panel >
           <v-expansion-panel-header>
-            Folios solicitados
+            Folios disponibles
             <template v-slot:actions>
               <v-icon color="primary" class="flechaAzul">$expand</v-icon>
             </template>
@@ -18,7 +18,7 @@
         </v-expansion-panel>
         <v-expansion-panel >
           <v-expansion-panel-header>
-            Solicitar folios
+            Solicitar nuevos folios
             <template v-slot:actions>
               <v-icon color="primary" class="flechaAzul">$expand</v-icon>
             </template>
