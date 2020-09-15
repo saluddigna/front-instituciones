@@ -24,6 +24,11 @@ service.solicitarFolios = function(data){
     }).then(res => res.data)
   }
 
+
+  service.getDisponibles = function(id){
+    return api.get('/api/folios/disponibles-institucion/'+id).then(res => res.data)
+}
+
 service.getSolicitados = function(id){
     return api.get('/api/folios/obtener-solicitados/'+id).then(res => res.data)
 }
