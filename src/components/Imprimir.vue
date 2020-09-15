@@ -55,7 +55,7 @@ export default {
     id:null,
   },
   methods: {
-    async imprimir(){
+    imprimir(){
       
       // const el = this.$refs.printMe
       // const options = {
@@ -74,7 +74,9 @@ export default {
       ventana.document.write('</body></html>')
       ventana.document.close()
       ventana.focus()
-      setTimeout(ventana.print(), 1000)
+      setTimeout(() => {
+              ventana.print()
+          }, 2000)
       
       this.dialog=false
     },
