@@ -43,7 +43,7 @@
             {{ folio.estudioPreparacion }}
           </div>
           <div class="d-flex flex-row justify-center align-center pa-1">
-            <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio)">Omitir datos</a>
+            <a href="#" class="datosFolio text-center" @click="guardarFolioOmitir(folio,index)">Omitir datos</a>
             <a href="#" @click="llenarDatos(folio,index)" class="datosFolio text-center">Llenar datos</a>
           </div>
         </v-card>
@@ -211,7 +211,8 @@ export default {
         this.vista=2
       })
     },
-    guardarFolioOmitir(folio){
+    guardarFolioOmitir(folio,index){
+        this.selectedIndex=index
         let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:"",paternal:"",maternal:""}]}
         this.folioSeleccionado=selected
 
