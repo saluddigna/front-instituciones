@@ -56,7 +56,7 @@
             <asignarFolio v-if="foliosD.length!=0" :foliosDisponibles="foliosD" :estudio="study" />
             
             <div v-else>
-              Aun no se ha generado ningun folio de {{study.nombre}}.
+               {{(foliosD.length!=0)?('Aun no se ha generado ningun folio de '+study.nombre):'Ningun folio se ha generado'}}.
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -178,6 +178,7 @@ export default {
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
     this.get()
+    this.getFoliosGenerados()
   },
   data: () => ({
     status:null,
@@ -240,7 +241,6 @@ export default {
     get(){
       foliosService.getSolicitados(this.dataUser.institution.id).then(res=>
     {
-      console.log(res);
        let data=res.map(x=>{
         return{
         folioId:x.id,
@@ -250,7 +250,6 @@ export default {
         generar:false
         }
       })
-      console.log(data)
       this.foliosSolicitados=data;
     })
     },

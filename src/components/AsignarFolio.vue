@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-if="vista==0" v-show="foliosDisponibles!=[{}]">
+    <v-row v-if="vista==0" >
       <v-col  cols="6" class="pa-2" v-for="(folio) in foliosDisponibles" :key="folio.id">
         <v-card class="card">
           <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+ (estudio!=null?estudio.color:'rgb(246 97 0)')">
@@ -180,10 +180,13 @@ export default {
   data: () => ({
     vista:0,
     dataUser:null,
-    folioSeleccionado:{}
+    folioSeleccionado:{},
+    ver:false
   }),
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+    // if(this.foliosDisponibles==[{}])
+    //   this.ver=true
   },
   props:{
     foliosDisponibles:null,
