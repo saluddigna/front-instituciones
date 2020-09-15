@@ -190,23 +190,23 @@ export default {
   },
   props:{
     foliosDisponibles:null,
-    estudio:{color:null,},
+    estudio:{},
     
   },
   methods:{
     llenarDatos(folio,index){
-      console.log(folio)
+      // console.log(folio)
       this.selectedIndex=index
       let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:folio.beneficiaryName,paternal:folio.beneficiaryPaternalName,maternal:folio.beneficiaryMaternalName}]}
       this.folioSeleccionado=selected
-      console.log(this.folioSeleccionado.foliosToAssign[0].folio)
+      // console.log(this.folioSeleccionado.foliosToAssign[0].folio)
       this.vista=1
-      console.log(this.vista)
+      // console.log(this.vista)
     },
     guardarFolio(){
       foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
       {
-        console.log(res)
+        // console.log(res)
         this.getFoliosGenerados();
         this.vista=2
       })
@@ -217,7 +217,7 @@ export default {
 
       foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
       {
-        console.log(res)
+        // console.log(res)
         this.getFoliosGenerados();
         this.vista=2
       })
