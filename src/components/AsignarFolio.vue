@@ -204,7 +204,7 @@ export default {
       // console.log(this.vista)
     },
     guardarFolio(){
-      foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
+      foliosService.asignarBeneficiario(this.folioSeleccionado).then(()=>
       {
         // console.log(res)
         this.getFoliosGenerados();
@@ -215,7 +215,7 @@ export default {
         let selected={institution:this.dataUser.institution.id,foliosToAssign:[{folio:folio.id,clinicaId:folio.clinicaId,clinicaName:folio.clincaName,name:"",paternal:"",maternal:""}]}
         this.folioSeleccionado=selected
 
-      foliosService.asignarBeneficiario(this.folioSeleccionado).then(res=>
+      foliosService.asignarBeneficiario(this.folioSeleccionado).then(()=>
       {
         // console.log(res)
         this.getFoliosGenerados();
