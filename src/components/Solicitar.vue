@@ -10,9 +10,9 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <div v-for="folio in folios" :key="folio.id" class="fSolicitados">
-              <span class="float-right">{{folio.cuenta}}</span>
-              <p>{{folio.folios}}</p>
+            <div v-for="folio in folios" :key="folio.description" class="fSolicitados">
+              <span class="float-right">{{folio.count}}</span>
+              <p>{{folio.description}}</p>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -169,6 +169,7 @@ export default {
   },
   mounted() {
     this.getEstudios()
+    this.getFoliosDisponibles()
   },
   methods: {
     agregar(index){
@@ -225,9 +226,15 @@ export default {
       this.estudios=data
     })
     },
+    getFoliosDisponibles(){
+      foliosService.getDisponibles(this.dataUser.institution.id).then(res=>{
+      this.folios=res
+    })
+    },
     aceptar(){
       this.listo=false
       this.getEstudios()
+      this.getFoliosDisponibles()
     }
   }
 };
