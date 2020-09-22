@@ -12,41 +12,68 @@
 }
 
 .sd-item-cupon{
-    width: 350px;
+    width: 382px;
     display: flex;
     background-color: #EDEDED;
-    padding: 14px 10px;
+    padding: 10px 5px;
     margin-bottom: 15px;
+    height: 205px;
 }
 
 .sd-item-cupon .sd-item-content:nth-child(1){
-    width: 197px;
+    width: 303px;
     padding-right: 5px;
     border-right: 2px dashed #AFAFAF;
-}
-
-.sd-item-cupon .sd-item-content:nth-child(2){
-    width: 153px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+}
+
+.sd-item-cupon .sd-item-content:nth-child(2){
+    width: 167px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding-left: 5px;
 }
 
 .sd-item-logo{
     display: flex;
     margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.sd-item-logo .sd-text{
+    font-size: 7px;
+    color: #1C9545;
+    text-align: center;
+    font-weight: bold;
 }
 
 .sd-item-logo img:nth-child(1){
-    width: 91px;
+    width: 88px;
     height: auto;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
-.sd-item-logo img:nth-child(2){
-    width: 47px;
+.logo-instituciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-instituciones img:nth-child(1){
+    width: 90px;
     height: auto;
+}
+
+.logo-instituciones img:nth-child(2){
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
 }
 
 .sd-titulo-preparacion{
@@ -66,10 +93,17 @@
     align-items: center;
 }
 
+.sd-direccion-sucursal{
+    font-size: 7px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
 .sd-sucursal{
     font-size: 10px;
     font-weight: 600;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
+    line-height: 11px;
 }
 
 .sd-content-folio{
@@ -77,9 +111,13 @@
     flex-direction: column;
     align-items: center;
     border: 2px dashed #FBAB1F;
-    padding: 5px 6px 2px 6px;
-    line-height: 20px;
+    padding: 8px;
     margin-bottom: 10px;
+    width: 85%;
+    height: 75px;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
 }
 
 .sd-folio{
@@ -92,9 +130,95 @@
 .sd-text{
     font-size: 14px;
     margin: 0;
+    line-height: 11px;
 }
 
 .sd-estudio{
     font-size: 10px;
     margin: 0;
+    line-height: 11px;
+}
+
+.sd-politicas-uso ul{
+    padding: 0 0 0 15px;
+    margin: 10px 0;
+}
+
+.sd-politicas-uso ul li{
+    font-size: 10px;
+}
+
+.sd-contendor-sucursal{
+    width: 80%;
+    background-color:#00af50;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+    padding: 5px;
+}
+.sd-clinica{
+    text-transform: uppercase;
+}
+
+.sd-nota{
+    margin-top: 10px;
+}
+
+.sd-nota .sd-text{
+    font-size: 8px;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sd-vigencia .sd-text{
+    color: #1C9545;
+    font-weight: bold;
+    font-size: 8px;
+    text-align: left;
+}
+
+.sd-vigencia .sd-text:nth-child(2){
+    color: #111;
+}
+
+.sd-cupon-general{
+    width: 392px;
+    margin-bottom: 15px;
+}
+
+.sd-preparacion-estudio table{
+    width: 100%;
+    border-spacing: 0;
+    font-size: 10px;
+    height: 80px;
+    font-weight: bold;
+}
+
+.sd-preparacion-estudio table td{
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid;
+    border-color: #111;
+    border-spacing: 0;
+    padding: 3px;
+}
+
+.sd-preparacion-estudio table tbody tr td:first-child{
+    border-right-width: 0px;
+    width: 30%;
+}
+
+
+.sd-preparacion-estudio table th{
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid;
+    border-color: #111;
+    border-spacing: 0;
+    border-bottom-width: 0;
+    text-align: center;
+    font-weight: bold;
 }

@@ -1,30 +1,69 @@
 <template>
   <div class="sd-contenedor-cupones">
-    <div v-for="cupon in cupones" :key="cupon.folio" class="sd-item-cupon">
-        <div class="sd-item-content">
-            <div class="sd-item-logo">
-                <img src="../assets/imgs/logo.svg" width="10px" alt="Logo Salud Digna">
-                <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
+    <div v-for="cupon in cupones" :key="cupon.folio" class="sd-cupon-general">
+        <div class="sd-item-cupon">
+            <div class="sd-item-content">
+                <div class="sd-item-logo">
+                    <img src="../assets/imgs/logo.svg" alt="Logo Salud Digna">
+                    <p class="sd-text">INSTITUCIÓN DE APOYO A LA PREVENCIÓN Y EL DIAGNOSTICO OPORTUNO</p>
+                </div>
+                <div class="logo-instituciones">
+                    <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
+                    <img v-if="cupon.estudio=='mastografia'" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                </div>
+                <div class="sd-politicas-uso">
+                    <ul>
+                        <li>Estudios no acumulables</li>
+                        <li>Limitado a una cortesía por persona</li>
+                        <li>No válido sin sello de institución beneficiada</li>
+                    </ul>
+                </div>
+                <div class="sd-contendor-sucursal">
+                    <p class="sd-sucursal">Válido solo en clínica</p>
+                    <p class="sd-text">
+                        <strong class="sd-clinica">{{cupon.clincaName}}</strong>
+                    </p>
+                </div>
+                <div class="sd-nota">
+                    <p class="sd-text">
+                        Este cupón es una cortesía y su venta está prohibida.
+                        <br>
+                        No es negociable, intercambiable ni representa moneda legal.
+                    </p>
+                </div>
             </div>
-            <p class="sd-titulo-preparacion">Preparación</p>
-            <div class="sd-item-preparacion">
-                {{cupon.estudioPreparacion}}
+            <div class="sd-item-content">
+                <div class="sd-datos-folio">
+                    <p class="sd-direccion-sucursal">dirección</p>
+                    <div class="sd-content-folio">
+                        <p class="sd-text">Folio</p>
+                        <p class="sd-folio">{{cupon.folio}}</p>
+                        <p class="sd-estudio">{{cupon.estudioName}}</p>
+                    </div>
+                    <div class="sd-codigo-barras">
+                        <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
+                        No se pudo generar el Código de barras
+                        </barcode>
+                    </div>
+                    <div class="sd-vigencia">
+                        <p class="sd-text">Vigencia al 28 de Septiembre de 2020</p>
+                        <p class="sd-text url-sitio">www.salud-digna.org</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="sd-item-content">
-            <div class="sd-datos-folio">
-                <p class="sd-sucursal">Valido solo en Clínica {{cupon.clincaName}}</p>
-                <div class="sd-content-folio">
-                    <p class="sd-text">Folio</p>
-                    <p class="sd-folio">{{cupon.folio}}</p>
-                    <p class="sd-estudio">{{cupon.estudioName}}</p>
-                </div>
-                <div class="sd-codigo-barras">
-                    <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
-                      No se pudo generar el Código de barras
-                    </barcode>
-                </div>
-            </div>
+        <div class="sd-preparacion-estudio">
+            <table>
+                <thead>
+                    <th colspan="2">PREPARACIÓN</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{cupon.estudioName}}</td>
+                        <td>{{cupon.estudioPreparacion}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
   </div>
@@ -34,51 +73,78 @@
 *{
   font-family: 'Open Sans', sans-serif;
 }
+
 .sd-contenedor-cupones{
     margin: 0 auto;
-    width: 720px;
+    width: 792px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .sd-item-cupon{
-    width: 350px;
+    width: 382px;
     display: flex;
     background-color: #EDEDED;
-    padding: 14px 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+    height: 200px;
 }
 
 .sd-item-cupon .sd-item-content:nth-child(1){
-    width: 197px;
+    width: 303px;
     padding-right: 5px;
     border-right: 2px dashed #AFAFAF;
-}
-
-.sd-item-cupon .sd-item-content:nth-child(2){
-    width: 153px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+}
+
+.sd-item-cupon .sd-item-content:nth-child(2){
+    width: 167px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding-left: 5px;
 }
 
 .sd-item-logo{
     display: flex;
     margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.sd-item-logo .sd-text{
+    font-size: 7px;
+    color: #1C9545;
+    text-align: center;
+    font-weight: bold;
 }
 
 .sd-item-logo img:nth-child(1){
-    width: 91px;
+    width: 88px;
     height: auto;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
-.sd-item-logo img:nth-child(2){
-    width: 47px;
+.logo-instituciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-instituciones img:nth-child(1){
+    width: 90px;
     height: auto;
+}
+
+.logo-instituciones img:nth-child(2){
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
 }
 
 .sd-titulo-preparacion{
@@ -98,11 +164,17 @@
     align-items: center;
 }
 
+.sd-direccion-sucursal{
+    font-size: 7px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
 .sd-sucursal{
     font-size: 10px;
     font-weight: 600;
-    margin: 0 0 10px 0;
-    text-align: center;
+    margin: 0 0 5px 0;
+    line-height: 11px;
 }
 
 .sd-content-folio{
@@ -110,13 +182,19 @@
     flex-direction: column;
     align-items: center;
     border: 2px dashed #FBAB1F;
-    padding: 5px 6px 2px 6px;
-    line-height: 20px;
+    padding: 8px;
     margin-bottom: 10px;
+    width: 85%;
+    height: 75px;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
 }
+
 .sd-content-folio>p{
   margin-bottom: 0;
 }
+
 .sd-folio{
     font-size: 18px;
     font-weight: 600;
@@ -127,12 +205,97 @@
 .sd-text{
     font-size: 14px;
     margin: 0;
+    line-height: 11px;
 }
 
 .sd-estudio{
     font-size: 10px;
     margin: 0;
+    line-height: 11px;
+}
+
+.sd-politicas-uso ul{
+    padding: 0 0 0 15px;
+    margin: 10px 0;
+}
+
+.sd-politicas-uso ul li{
+    font-size: 10px;
+}
+
+.sd-contendor-sucursal{
+    width: 80%;
+    background-color:#00af50;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+    padding: 5px;
+}
+.sd-clinica{
+    text-transform: uppercase;
+}
+
+.sd-nota{
+    margin-top: 10px;
+}
+
+.sd-nota .sd-text{
+    font-size: 8px;
+    color: #000;
     text-align: center;
+    font-weight: bold;
+}
+
+.sd-vigencia .sd-text{
+    color: #1C9545;
+    font-weight: bold;
+    font-size: 8px;
+    text-align: left;
+}
+
+.sd-vigencia .sd-text:nth-child(2){
+    color: #111;
+}
+
+.sd-cupon-general{
+    width: 392px;
+    margin-bottom: 15px;
+}
+
+.sd-preparacion-estudio table{
+    width: 100%;
+    border-spacing: 0;
+    font-size: 10px;
+    height: 80px;
+    font-weight: bold;
+}
+
+.sd-preparacion-estudio table td{
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid;
+    border-color: #111;
+    border-spacing: 0;
+    padding: 3px;
+}
+
+.sd-preparacion-estudio table tbody tr td:first-child{
+    border-right-width: 0px;
+    width: 30%;
+}
+
+
+.sd-preparacion-estudio table th{
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid;
+    border-color: #111;
+    border-spacing: 0;
+    border-bottom-width: 0;
+    text-align: center;
+    font-weight: bold;
 }
 </style>
 <script>
