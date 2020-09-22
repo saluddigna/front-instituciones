@@ -80,15 +80,18 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    
 }
-
+.sd-contenedor-cupones  .v-application p{
+    margin-bottom: 0!important;
+}
 .sd-item-cupon{
-    width: 382px;
+    width: 392px;
     display: flex;
     background-color: #EDEDED;
     padding: 10px 5px;
     margin-bottom: 15px;
-    height: 200px;
+    height: 230px;
 }
 
 .sd-item-cupon .sd-item-content:nth-child(1){
@@ -175,6 +178,7 @@
     font-weight: 600;
     margin: 0 0 5px 0;
     line-height: 11px;
+    margin-bottom: 0!important;
 }
 
 .sd-content-folio{
@@ -184,7 +188,7 @@
     border: 2px dashed #FBAB1F;
     padding: 8px;
     margin-bottom: 10px;
-    width: 85%;
+    width: 95%;
     height: 75px;
     justify-content: center;
     text-align: center;
@@ -206,6 +210,7 @@
     font-size: 14px;
     margin: 0;
     line-height: 11px;
+    margin-bottom: 0!important;
 }
 
 .sd-estudio{
@@ -217,6 +222,7 @@
 .sd-politicas-uso ul{
     padding: 0 0 0 15px;
     margin: 10px 0;
+    line-height: 10px;
 }
 
 .sd-politicas-uso ul li{
