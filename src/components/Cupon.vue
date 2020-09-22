@@ -1,6 +1,6 @@
 <template>
   <div class="sd-contenedor-cupones">
-    <div v-for="cupon in cupones" :key="cupon.folio" class="sd-cupon-general">
+    <div v-for="(cupon, c) in cupones" :key="cupon.folio" class="sd-cupon-general">
         <div class="sd-item-cupon">
             <div class="sd-item-content">
                 <div class="sd-item-logo">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="sd-preparacion-estudio">
+        <div class="sd-preparacion-estudio" :class="{'marginHoja': ((c+1)%6)==0}">
             <table>
                 <thead>
                     <th colspan="2">PREPARACIÓN</th>
@@ -73,7 +73,9 @@
 *{
   font-family: 'Open Sans', sans-serif;
 }
-
+.marginHoja{
+    margin-bottom: 100px;
+}
 .sd-contenedor-cupones{
     margin: 0 auto;
     width: 792px;
