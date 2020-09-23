@@ -9,7 +9,7 @@
                 </div>
                 <div class="logo-instituciones">
                     <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
-                    <img v-if="cupon.estudio=='mastografia'" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                    <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
                 </div>
                 <div class="sd-politicas-uso">
                     <ul>

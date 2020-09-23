@@ -12,7 +12,7 @@
     <v-row >
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
-          <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudios[folio.estudioId-1].color">
+          <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+estudios[folio.parentEstudioId-1].color">
             <div class="rounded-circle iconEstudio mx-2">
               <i v-if="folio.parentEstudioId==1" class="icon-densitometria" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==2" class="icon-laboratorio" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
@@ -110,34 +110,16 @@ export default {
      console.log(filtro)
       foliosService.getAsignados(this.dataUser.institution.id,filtro).then(res=>{
         let data=res.map(x=>{
-        return{
-          beneficiaryId:x.beneficiaryId,
-          beneficiaryName:x.beneficiaryName,
-          beneficiaryMaternalName:x.beneficiaryMaternalName,
-          beneficiaryPaternalName:x.beneficiaryPaternalName,
-          clincaName:x.clincaName,
-          clinicaId:x.clinicaId,
-          estudioDescription:x.estudioDescription,
-          estudioId:x.estudioId,
-          estudioName:x.estudioName,
-          estudioPreparacion:x.estudioPreparacion,
-          flecha:true,
-          folio:x.folio,
-          id:x.id,
-          statusSolicitude:x.statusSolicitude,
-        }
-        });
-        this.foliosAsignados=data;
+        x.folio=true
+        return x
+        })
+        this.foliosAsignados=data
         this.loading=false
       })
     },
     llenarDatos(f){
       this.foliosA=f
     },
-    // changeFiltro(){
-    //   console.log(this.filtroSearch)
-    //   this.getFoliosAsignados(this.filtroSearch)
-    // }
   }
 }
 </script>
