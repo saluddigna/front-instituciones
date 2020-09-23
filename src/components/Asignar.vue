@@ -311,25 +311,11 @@ export default {
     getFoliosAsignados(){
       foliosService.getAsignados(this.dataUser.institution.id,null).then(res=>{
         let data=res.map(x=>{
-        return{
-          beneficiaryId:x.beneficiaryId,
-          beneficiaryName:x.beneficiaryName,
-          beneficiaryMaternalName:x.beneficiaryMaternalName,
-          beneficiaryPaternalName:x.beneficiaryPaternalName,
-          clincaName:x.clincaName,
-          clinicaId:x.clinicaId,
-          estudioDescription:x.estudioDescription,
-          estudioId:x.estudioId,
-          estudioName:x.estudioName,
-          estudioPreparacion:x.estudioPreparacion,
-          flecha:true,
-          folio:x.folio,
-          id:x.id,
-          statusSolicitude:x.statusSolicitude,
-        }
-        });
+        x.flecha=true
+        return x
+        })
         console.log(data)
-        this.foliosA=data;
+        this.foliosA=data
       })
     },
     changeSelected(estudioId,estudio){

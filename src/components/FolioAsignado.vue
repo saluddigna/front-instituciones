@@ -20,7 +20,7 @@
               <i v-else-if="folio.parentEstudioId==4" class="icon-papanicolau" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==5" class="icon-rayos-x" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==6" class="icon-ultrasonido" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
-              <i v-else-if="folio.parentEstudioId==7" class="icon-electrocardiograma" :style="'color:'+estudio[folio.estudioId-1].color"></i>
+              <i v-else-if="folio.parentEstudioId==7" class="icon-electrocardiograma" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==8" class="icon-tomografia" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==9" class="icon-resonancia" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
               <i v-else-if="folio.parentEstudioId==10" class="icon-nutricion2" :style="'color:'+estudios[folio.parentEstudioId-1].color"></i>
@@ -75,7 +75,6 @@ import foliosService from '../services/folios'
 export default {
   name:'FolioAsignado',
   data: () => ({
-    flecha:[true,true,true,true,true,true,true,true],
     dataUser:null,
     foliosA:null,
     filtroSearch:null,
@@ -110,7 +109,7 @@ export default {
      console.log(filtro)
       foliosService.getAsignados(this.dataUser.institution.id,filtro).then(res=>{
         let data=res.map(x=>{
-        x.folio=true
+        x.flecha=true
         return x
         })
         this.foliosAsignados=data
