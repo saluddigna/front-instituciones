@@ -1,14 +1,14 @@
 <template>
   <div class="d-flex flex-column h-94">
     <div class="flex-1-1 contenedor" v-if="!listo">
-      <div v-show="panel!=2" class="sd-navs-areas">
+      <!-- <div v-show="panel!=2" class="sd-navs-areas">
         <div class="sd-previous" @click="derecha=false">
             <i class="icon-angle-left-4"></i>
         </div>
         <div class="sd-next" @click="derecha=true">
             <i class="icon-angle-right-4"></i>
         </div>
-      </div>
+      </div> -->
       <div v-show="panel!=2" class="miniCarrusel flex-row" :class="{'carruselD':derecha, 'd-flex': panel!=2}">
         <div id="carrusel" class="rounded-circle estudioCarrusel ma-2" v-for="estudio in estudios" :key="estudio.id" :style="'border:2px solid '+estudio.color+';'+(activo==estudio.id?('background-color:'+estudio.color+'; fill: #fff;'):'')" @click="changeSelected(estudio.id,estudio)" >
         <v-tooltip top>
@@ -161,6 +161,42 @@
     animation: 0.3s all;
     transform: translateX(-90px);
   }
+  .bg-densi{
+    background-color: #7F95A1;
+  }
+  .color-densi{
+    color: #7F95A1;
+  }
+  .bg-lab{
+    background-color: #359FDA;
+  }
+  .color-lab{
+    color: #359FDA;
+  }
+  .bg-masto{
+    background-color: #ED4F83;
+  }
+  .color-masto{
+    color: #ED4F83;
+  }
+  .bg-papa{
+    background-color: #AD65C2
+  }
+  .color-papa{
+    color: #AD65C2
+  }
+  .bg-ultra{
+    background-color: #49A5AD
+  }
+  .color-ultra{
+    color: #49A5AD
+  }
+  .bg-electro{
+    background-color:#db5859
+  }
+  .color-electro{
+    color: #db5859
+  }
 </style>
 <script>
 import AsignarFolio from './AsignarFolio'
@@ -204,25 +240,9 @@ export default {
       nombre:'Mastografía',
       color:'#ED4F83'
     },{
-      id:10,
-      nombre:'Nutrición',
-      color:'#60A463'
-    },{
       id:4,
       nombre:'Papanicolaou',
       color:'#AD65C2'
-    },{
-      id:5,
-      nombre:'Rayos X',
-      color:'#755FB8'
-    },{
-      id:9,
-      nombre:'Resonancia Magnética',
-      color:'#896F67'
-    },{
-      id:8,
-      nombre:'Tomografía',
-      color:'#A19B54'
     },{
       id:6,
       nombre:'Ultrasonido',
@@ -231,7 +251,7 @@ export default {
       id:7,
       nombre:'Electrocardiograma',
       color:'#db5859'
-    },
+    }
     ],
     estudioF:[{id:0, nombre:'Cargando...'},],
     foliosD:[{}],

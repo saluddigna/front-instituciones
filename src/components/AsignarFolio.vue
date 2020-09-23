@@ -54,16 +54,15 @@
         <div class="d-flex headerEstudio flex-row justify-start align-center" :style="'background-color:'+(estudio!=null?estudio.color:'rgb(246 97 0)')">
             <div class="rounded-circle iconEstudio mx-2">
               <i v-if="foliosDisponibles[selectedIndex].id==1" class="icon-densitometria" ></i>
-              <!-- :style="'color:'+estudio.color" -->
-          <i v-else-if="foliosDisponibles[selectedIndex].id==2" class="icon-laboratorio" ></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==3" class="icon-mastografia" ></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==4" class="icon-papanicolau"></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==5" class="icon-rayos-x"></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==6" class="icon-ultrasonido" ></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==7" class="icon-electrocardiograma"></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==8" class="icon-tomografia" ></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==9" class="icon-resonancia"></i>
-          <i v-else-if="foliosDisponibles[selectedIndex].id==10" class="icon-nutricion2" ></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==2" class="icon-laboratorio" ></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==3" class="icon-mastografia" ></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==4" class="icon-papanicolau"></i>
+              <!-- <i v-else-if="foliosDisponibles[selectedIndex].id==5" class="icon-rayos-x"></i> -->
+              <i v-else-if="foliosDisponibles[selectedIndex].id==6" class="icon-ultrasonido" ></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==7" class="icon-electrocardiograma"></i>
+              <!-- <i v-else-if="foliosDisponibles[selectedIndex].id==8" class="icon-tomografia" ></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==9" class="icon-resonancia"></i>
+              <i v-else-if="foliosDisponibles[selectedIndex].id==10" class="icon-nutricion2" ></i> -->
             </div>
             <span class="tituloEstudio">{{foliosDisponibles[selectedIndex].estudioName}}</span>
           </div>
