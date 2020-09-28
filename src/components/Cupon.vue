@@ -34,7 +34,7 @@
             </div>
             <div class="sd-item-content">
                 <div class="sd-datos-folio">
-                    <p class="sd-direccion-sucursal">dirección</p>
+                    <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
                     <div class="sd-content-folio">
                         <p class="sd-text">Folio</p>
                         <p class="sd-folio">{{cupon.folio}}</p>
