@@ -46,7 +46,7 @@
                         </barcode>
                     </div>
                     <div class="sd-vigencia">
-                        <p class="sd-text">Vigencia al 28 de Septiembre de 2020</p>
+                        <p class="sd-text">Vigencia al 29 de Noviembre de 2020</p>
                         <p class="sd-text url-sitio">www.salud-digna.org</p>
                     </div>
                 </div>
