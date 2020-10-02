@@ -58,7 +58,7 @@
                     <th colspan="2">PREPARACIÓN</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr height="80px">
                         <td>{{cupon.estudioName}}</td>
                         <td>{{cupon.estudioPreparacion}}</td>
                     </tr>

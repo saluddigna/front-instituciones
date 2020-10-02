@@ -194,6 +194,8 @@
     border-spacing: 0;
     font-size: 10px;
     height: 80px;
+    min-height: 80px;
+    max-height: 80px;
     font-weight: bold;
 }
 
@@ -223,5 +225,5 @@
     font-weight: bold;
 }
 .marginHoja{
-    margin-bottom: 70px;
+    margin-bottom: 12px;
 }

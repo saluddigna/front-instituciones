@@ -155,6 +155,7 @@
     transform: translateX(0px);
     transition: 0.3s all;
     animation: 0.3s all;
+    justify-content: center;
   }
   .carruselD{
     transition: 0.3s all;
