@@ -38,6 +38,7 @@
 </template>
 <script>
 import Cupon from './Cupon'
+import folioPrin from '../services/folios'
 export default {
   name:'impresion',
   data () {
@@ -79,6 +80,7 @@ export default {
           }, 2000)
       
       this.dialog=false
+      folioPrin.updateImpresos(this.cupon)
     },
 
   }
