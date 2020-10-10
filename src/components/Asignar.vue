@@ -71,6 +71,17 @@
             <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" />
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel >
+          <v-expansion-panel-header @click="getFoliosAsignadosImpresos()">
+            Folios asignados Reimprimir
+            <template v-slot:actions>
+              <v-icon color="primary" class="flechaAzul">$expand</v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <folioAsignadoReimprimir :folioAsignadosReimprimir="foliosA" :estudios="estudios" />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
     </div>
     <div v-else>
@@ -202,6 +213,7 @@
 <script>
 import AsignarFolio from './AsignarFolio'
 import FolioAsignado from './FolioAsignado'
+import FolioAsignadoReimprimir from './FolioAsignadoReimprimir'
 import foliosService from '../services/folios'
 import utilsService from '../services/utils-services'
 
@@ -210,7 +222,8 @@ export default {
 
   components: {
     AsignarFolio,
-    FolioAsignado
+    FolioAsignado,
+    FolioAsignadoReimprimir
   },             
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
@@ -331,6 +344,16 @@ export default {
     },
     getFoliosAsignados(){
       foliosService.getAsignados(this.dataUser.institution.id,null).then(res=>{
+        let data=res.map(x=>{
+        x.flecha=true
+        return x
+        })
+        console.log(data)
+        this.foliosA=data
+      })
+    },
+    getFoliosAsignadosImpresos(){
+      foliosService.getAsignadosImpresos(this.dataUser.institution.id,null).then(res=>{
         let data=res.map(x=>{
         x.flecha=true
         return x

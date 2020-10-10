@@ -53,6 +53,10 @@ service.getAsignados = function(id,filtro){
   return api.get('/api/folios/obtener-asignados?' + `id=${id}&filtro=${filtro}`).then(res => res.data)
 }
 
+service.getAsignadosImpresos = function(id,filtro){
+  return api.get('/api/folios/obtener-asignados-impresos?' + `id=${id}&filtro=${filtro}`).then(res => res.data)
+}
+
 service.updateImpresos = function(id) {
   return api.post('/api/folios/actualiza-status-impresion', id).then(res => res.data)
 }
