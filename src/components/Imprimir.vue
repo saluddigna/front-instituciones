@@ -81,6 +81,7 @@ export default {
       
       this.dialog=false
       folioPrin.updateImpresos(this.cupon)
+      this.$bus.$emit('impreso', 1); 
     },
 
   }

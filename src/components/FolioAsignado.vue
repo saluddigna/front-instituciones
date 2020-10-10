@@ -8,7 +8,18 @@
       :loading="loading"
       dense
     ></v-text-field>
-    <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+    <v-row>
+      <v-col>
+        <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+      </v-col>
+      <v-col>
+        <v-switch
+      v-model="opcion"
+      @click="filtroImpreso"
+      :label="`Impresos`"
+    ></v-switch>
+      </v-col>
+    </v-row>
     <v-row >
       <v-col cols="6" class="pa-2" v-for="(folio,i) in foliosAsignados" :key="folio.id">
         <v-card class="card" >
@@ -92,7 +103,7 @@ export default {
   props:{
     estudios:{},
    foliosAsignados:null,
-    
+    opcion:null
   },
   watch: {
       filtroSearch: function () {
@@ -120,6 +131,9 @@ export default {
     llenarDatos(f){
       this.foliosA=f
     },
+    filtroImpreso(){
+      this.$bus.$emit('yaImpresos', this.opcion); 
+    }
   }
 }
 </script>

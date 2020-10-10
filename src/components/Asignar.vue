@@ -68,10 +68,10 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" />
+            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" :opcion="filtro" />
           </v-expansion-panel-content>
         </v-expansion-panel>
-        <v-expansion-panel >
+        <!-- <v-expansion-panel >
           <v-expansion-panel-header @click="getFoliosAsignadosImpresos()">
             Folios asignados Reimprimir
             <template v-slot:actions>
@@ -81,7 +81,7 @@
           <v-expansion-panel-content>
             <folioAsignadoReimprimir :folioAsignadosReimprimir="foliosA" :estudios="estudios" />
           </v-expansion-panel-content>
-        </v-expansion-panel>
+        </v-expansion-panel> -->
       </v-expansion-panels>
     </div>
     <div v-else>
@@ -213,7 +213,7 @@
 <script>
 import AsignarFolio from './AsignarFolio'
 import FolioAsignado from './FolioAsignado'
-import FolioAsignadoReimprimir from './FolioAsignadoReimprimir'
+// import FolioAsignadoReimprimir from './FolioAsignadoReimprimir'
 import foliosService from '../services/folios'
 import utilsService from '../services/utils-services'
 
@@ -223,7 +223,7 @@ export default {
   components: {
     AsignarFolio,
     FolioAsignado,
-    FolioAsignadoReimprimir
+    // FolioAsignadoReimprimir
   },             
   mounted(){
     this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
@@ -240,6 +240,7 @@ export default {
     checkGenerar:[],
     listo:false,
     foliosSolicitados:null,
+    filtro:false,
     estudios:[
       {
       id:1,
@@ -271,7 +272,21 @@ export default {
     foliosD:[{}],
     foliosA:[{}]
   }),
-
+  created(){
+    this.$bus.$off('impreso')
+    this.$bus.$on('impreso', () => {
+      if(this.filtro){
+        this.getFoliosAsignadosImpresos()
+      }else{
+        this.getFoliosAsignados()
+      }
+    })
+    this.$bus.$off('yaImpresos')
+    this.$bus.$on('yaImpresos', filtro => {
+      filtro?this.getFoliosAsignadosImpresos():this.getFoliosAsignados()
+      
+    })
+  },
   methods:{
     get(){
       foliosService.getSolicitados(this.dataUser.institution.id).then(res=>
@@ -282,7 +297,7 @@ export default {
         estudioId:x.clinicalStudy.id,
         parentEstudioId:x.clinicalStudy.idEstudio,
         estudioName:x.clinicalStudy.description,
-        generar:false
+        generar:false,
         }
       })
       this.foliosSolicitados=data;
