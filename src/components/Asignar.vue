@@ -284,7 +284,7 @@ export default {
     this.$bus.$off('yaImpresos')
     this.$bus.$on('yaImpresos', filtro => {
       filtro?this.getFoliosAsignadosImpresos():this.getFoliosAsignados()
-      
+      this.filtro=filtro
     })
   },
   methods:{

@@ -103,7 +103,7 @@ export default {
   props:{
     estudios:{},
    foliosAsignados:null,
-    opcion:null
+    opcion:Boolean
   },
   watch: {
       filtroSearch: function () {
