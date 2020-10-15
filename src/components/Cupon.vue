@@ -46,7 +46,7 @@
                         </barcode>
                     </div>
                     <div class="sd-vigencia">
-                        <p class="sd-text">Vigencia al 29 de Noviembre de 2020</p>
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
                         <p class="sd-text url-sitio">www.salud-digna.org</p>
                     </div>
                 </div>
@@ -318,5 +318,16 @@ export default {
   props:{
     cupones:[]
   },
+  methods: {
+      dateFormat(date){
+        var strArray=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        var d = new Date(date);
+        var day = d.getUTCDate();
+        var month = strArray[d.getUTCMonth()];
+        var year = d.getUTCFullYear();
+
+        return 'Vigencia al ' + (day <= 9 ? '0' + day : day) + ' de ' + month + ' de ' + year;
+    }
+  }
 }
 </script>
