@@ -270,7 +270,8 @@ export default {
     ],
     estudioF:[{id:0, nombre:'Cargando...'},],
     foliosD:[{}],
-    foliosA:[{}]
+    foliosA:[{}],
+    foliosID:[{}]
   }),
   created(){
     this.$bus.$off('impreso')
@@ -365,6 +366,17 @@ export default {
         })
         console.log(data)
         this.foliosA=data
+        this.getFoliosAsignadosIdFolios()
+      })
+    },
+    getFoliosAsignadosIdFolios(){
+      foliosService.getAsignadosIdFolio(this.dataUser.institution.id,null).then(res=>{
+        let data=res.map(x=>{
+        x.flecha=true
+        return x
+        })
+        console.log(data)
+        this.foliosID=data
       })
     },
     getFoliosAsignadosImpresos(){
@@ -375,6 +387,7 @@ export default {
         })
         console.log(data)
         this.foliosA=data
+        this.getFoliosAsignadosIdFolios()
       })
     },
     changeSelected(estudioId,estudio){

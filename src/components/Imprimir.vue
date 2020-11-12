@@ -32,7 +32,6 @@
         <div  >
           <img :src="output">
         </div>
-        
       </v-card>
     </v-dialog>
 </template>
@@ -52,8 +51,9 @@ export default {
   },
   props:{
     opcion:String,
+    folio:[],
     cupon:[],
-    id:null,
+    id:null
   },
   methods: {
     imprimir(){
@@ -78,13 +78,11 @@ export default {
       setTimeout(() => {
               ventana.print()
           }, 2000)
-      
+
       this.dialog=false
       folioPrin.updateImpresos(this.cupon)
       this.$bus.$emit('impreso', 1); 
     },
-
   }
-
 }
 </script>
