@@ -10,7 +10,7 @@
     ></v-text-field>
     <v-row>
       <v-col>
-        <imprimir :opcion="'todos'" :folio="foliosData" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+        <imprimir :opcion="'todos'" :folio="fff" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
       </v-col>
       <v-col>
         <v-switch
@@ -89,7 +89,7 @@ export default {
   data: () => ({
     dataUser:null,
     foliosA:null,
-    foliosID:null,
+    fff:null,
     filtroSearch:null,
     foliosData:null,
     loading:false
@@ -105,7 +105,8 @@ export default {
   props:{
     estudios:{},
     foliosAsignados:null,
-    opcion:Boolean
+    opcion:Boolean,
+    fff:null,
   },
   watch: {
       filtroSearch: function () {
@@ -128,6 +129,7 @@ export default {
         })
         this.foliosAsignados=data
         this.loading=false
+        this.foliosData=data
       })
     },
    getFoliosAsignadosIdFolios(filtro){
@@ -139,7 +141,7 @@ export default {
         console.log('somos un ejemplo')
         console.log(data)
         console.log('soy final de la linea')
-        this.foliosData=data
+        
         this.getFoliosAsignados(this.filtroSearch)
       })
     },

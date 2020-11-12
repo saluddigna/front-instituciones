@@ -43,7 +43,7 @@ export default {
   data () {
       return {
         dialog: false,
-        output:null
+        output:null,
       }
     },
   components: {
@@ -51,7 +51,7 @@ export default {
   },
   props:{
     opcion:String,
-    folio:[],
+    folio:null,
     cupon:[],
     id:null
   },
@@ -80,7 +80,7 @@ export default {
           }, 2000)
 
       this.dialog=false
-      folioPrin.updateImpresos(this.cupon)
+      folioPrin.updateImpresos(this.folio)
       this.$bus.$emit('impreso', 1); 
     },
   }

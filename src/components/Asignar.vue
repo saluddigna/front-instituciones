@@ -68,7 +68,7 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" :opcion="filtro" />
+            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" :opcion="filtro" :fff="foliosID" />
           </v-expansion-panel-content>
         </v-expansion-panel>
         <!-- <v-expansion-panel >
@@ -271,7 +271,7 @@ export default {
     estudioF:[{id:0, nombre:'Cargando...'},],
     foliosD:[{}],
     foliosA:[{}],
-    foliosID:[{}]
+    foliosID:null
   }),
   created(){
     this.$bus.$off('impreso')
@@ -368,15 +368,11 @@ export default {
         this.foliosA=data
         this.getFoliosAsignadosIdFolios()
       })
+
     },
     getFoliosAsignadosIdFolios(){
       foliosService.getAsignadosIdFolio(this.dataUser.institution.id,null).then(res=>{
-        let data=res.map(x=>{
-        x.flecha=true
-        return x
-        })
-        console.log(data)
-        this.foliosID=data
+        this.foliosID=res
       })
     },
     getFoliosAsignadosImpresos(){
@@ -387,7 +383,6 @@ export default {
         })
         console.log(data)
         this.foliosA=data
-        this.getFoliosAsignadosIdFolios()
       })
     },
     changeSelected(estudioId,estudio){
