@@ -10,7 +10,7 @@
     ></v-text-field>
     <v-row>
       <v-col>
-        <imprimir :opcion="'todos'" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+        <imprimir :opcion="'todos'" :folio="foliosid" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
       </v-col>
       <v-col>
         <v-switch
@@ -67,7 +67,7 @@
           <!-- <div class="d-flex flex-row justify-center align-center pa-1">
             <a href="#"  class="datosFolio text-center">Imprimir</a>
           </div> -->
-          <imprimir :opcion="'solo'" :cupon="[folio]" :id="folio.folio" />
+          <imprimir :opcion="'solo'" :folio="[{id: folio.id, folio: folio.folio}]" :cupon="[folio]" :id="folio.folio" />
         </v-card>
       </v-col>
     </v-row>
@@ -89,7 +89,9 @@ export default {
   data: () => ({
     dataUser:null,
     foliosA:null,
+    foliosid:null,
     filtroSearch:null,
+    foliosData:null,
     loading:false
     // foliosAsignados:[{estudioId:2,estudio:'Laboratorio',nombre:'Christian', apellidoP:'Pulido',apellidoM:'Quintero', clinica:'Navolato',status:0,folio:14021996, preparacion:'Sin preparacion'}]
   }),
@@ -102,15 +104,16 @@ export default {
   }, 
   props:{
     estudios:{},
-   foliosAsignados:null,
-    opcion:Boolean
+    foliosAsignados:null,
+    opcion:Boolean,
+    foliosid:null,
   },
   watch: {
       filtroSearch: function () {
         this.loading=true
         if (!this.awaitingSearch) {
             setTimeout(() => {
-              this.getFoliosAsignados(this.filtroSearch)
+              this.getFoliosAsignadosIdFolios(this.filtroSearch)
           }, 2000); // 1 sec delay
         }
       
@@ -126,6 +129,20 @@ export default {
         })
         this.foliosAsignados=data
         this.loading=false
+        this.foliosData=data
+      })
+    },
+   getFoliosAsignadosIdFolios(filtro){
+      foliosService.getAsignadosIdFolio(this.dataUser.institution.id,filtro).then(res=>{
+        let data=res.map(x=>{
+        x.flecha=true
+        return x
+        })
+        console.log('somos un ejemplo')
+        console.log(data)
+        console.log('soy final de la linea')
+        
+        this.getFoliosAsignados(this.filtroSearch)
       })
     },
     llenarDatos(f){
