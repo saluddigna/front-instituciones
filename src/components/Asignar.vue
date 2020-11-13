@@ -68,7 +68,7 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" :opcion="filtro" :fff="foliosID" />
+            <folioAsignado :foliosAsignados="foliosA" :estudios="estudios" :opcion="filtro" :foliosid="foliosID" />
           </v-expansion-panel-content>
         </v-expansion-panel>
         <!-- <v-expansion-panel >

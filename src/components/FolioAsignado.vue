@@ -10,7 +10,7 @@
     ></v-text-field>
     <v-row>
       <v-col>
-        <imprimir :opcion="'todos'" :folio="fff" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
+        <imprimir :opcion="'todos'" :folio="foliosid" :cupon="foliosAsignados" :id="'0'" v-show="foliosAsignados.length!=0" />
       </v-col>
       <v-col>
         <v-switch
@@ -89,7 +89,7 @@ export default {
   data: () => ({
     dataUser:null,
     foliosA:null,
-    fff:null,
+    foliosid:null,
     filtroSearch:null,
     foliosData:null,
     loading:false
@@ -106,7 +106,7 @@ export default {
     estudios:{},
     foliosAsignados:null,
     opcion:Boolean,
-    fff:null,
+    foliosid:null,
   },
   watch: {
       filtroSearch: function () {
