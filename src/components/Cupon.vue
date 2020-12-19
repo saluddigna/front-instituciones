@@ -13,9 +13,9 @@
                 </div>
                 <div class="sd-politicas-uso">
                     <ul>
-                        <li>Estudios no acumulables</li>
-                        <li>Limitado a una cortesía por persona</li>
-                        <li>No válido sin sello de institución beneficiada</li>
+                        <li>Estudio no acumulado. Limitado a una cortesía por persona.</li>
+                        <li>Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
+                        <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
                     </ul>
                 </div>
                 <div class="sd-contendor-sucursal">
@@ -24,13 +24,13 @@
                         <strong class="sd-clinica">{{cupon.clincaName}}</strong>
                     </p>
                 </div>
-                <div class="sd-nota">
+        <!-- <div class="sd-nota">
                     <p class="sd-text">
                         Este cupón es una cortesía y su venta está prohibida.
                         <br>
                         No es negociable, intercambiable ni representa moneda legal.
                     </p>
-                </div>
+                </div> -->
             </div>
             <div class="sd-item-content">
                 <div class="sd-datos-folio">
@@ -47,7 +47,10 @@
                     </div>
                     <div class="sd-vigencia">
                         <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
-                        <p class="sd-text url-sitio">www.salud-digna.org</p>
+                        <p class="sd-text">
+                            Este cupón es una cortesía y su venta esta prohibida. <br>
+                            No es negociable, intercambiable ni representa moneda legal.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -55,12 +58,15 @@
         <div class="sd-preparacion-estudio" :class="{'marginHoja': ((c+1)%6)==0}">
             <table>
                 <thead>
-                    <th colspan="2">PREPARACIÓN</th>
+                    <th colspan="2">Información importante:</th>
                 </thead>
                 <tbody>
                     <tr height="80px">
-                        <td>{{cupon.estudioName}}</td>
-                        <td>{{cupon.estudioPreparacion}}</td>
+                        <td>
+                            <li>Para evitar aglomeraciones, es importante que asista la persona que solo se realizará el estudio. Llevar acompañante solo en caso de ser necesario.</li>
+                            <li>Es importante que asista a clínica con su cubre bocas.</li>
+                            <li>Puedes <a style="color: #FF0000;">agendar tu cita, consultar preparaciones y  tus resultados</a> al <strong>01 800 008 2828</strong> o en la página de internet: <a href="" style="color: #0000FF;">https://salud-digna.org/</a></li>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -171,7 +177,7 @@
 
 .sd-direccion-sucursal{
     font-size: 7px;
-    margin: 0 0 10px 0;
+    margin: 0 0 2px 0;
     font-weight: bold;
 }
 
@@ -265,6 +271,9 @@
 
 .sd-vigencia .sd-text:nth-child(2){
     color: #111;
+    font-size: 4.2px;
+    text-align: center;
+    line-height: 6px;
 }
 
 .sd-cupon-general{
@@ -286,12 +295,8 @@
     border: 1px solid;
     border-color: #111;
     border-spacing: 0;
-    padding: 3px;
-}
-
-.sd-preparacion-estudio table tbody tr td:first-child{
-    border-right-width: 0px;
-    width: 30%;
+    font-size: 8px;
+    padding: 2px;
 }
 
 
@@ -302,7 +307,7 @@
     border-color: #111;
     border-spacing: 0;
     border-bottom-width: 0;
-    text-align: center;
+    text-align: left;;
     font-weight: bold;
 }
 </style>

@@ -95,7 +95,7 @@
 
 .sd-direccion-sucursal{
     font-size: 7px;
-    margin: 0 0 10px 0;
+    margin: 0 0 4px 0;
     font-weight: bold;
 }
 
@@ -182,6 +182,10 @@
 
 .sd-vigencia .sd-text:nth-child(2){
     color: #111;
+    font-size: 4.2px;
+    margin: 3px 0 0 0;
+    text-align: center;
+    line-height: 6px;
 }
 
 .sd-cupon-general{
@@ -208,12 +212,6 @@
     padding: 3px;
 }
 
-.sd-preparacion-estudio table tbody tr td:first-child{
-    border-right-width: 0px;
-    width: 30%;
-}
-
-
 .sd-preparacion-estudio table th{
     text-align: left;
     vertical-align: middle;
@@ -221,7 +219,7 @@
     border-color: #111;
     border-spacing: 0;
     border-bottom-width: 0;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
 }
 .marginHoja{
