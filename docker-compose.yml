@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: instituciones-front
+    ports:
+      - "5015:80"
+    networks:
+      - devoluciones-net
+
+networks:
+  devoluciones-net:
+    external: true
