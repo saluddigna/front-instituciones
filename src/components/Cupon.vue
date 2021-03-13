@@ -11,7 +11,14 @@
                     <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
                     <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
                 </div>
-                <div class="sd-politicas-uso">
+                <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso">
+                    <ul>
+                        <li>Estudio no acumulado. Limitado a una cortesía por persona. Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
+                        <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
+                        <li>Excepto: Doppler, mamario, musculo tendionoso, transfontanelar y transvaginal.</li>
+                    </ul>
+                </div>
+                <div v-else class="sd-politicas-uso">
                     <ul>
                         <li>Estudio no acumulado. Limitado a una cortesía por persona.</li>
                         <li>Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
