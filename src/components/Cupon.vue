@@ -18,6 +18,13 @@
                         <li>Excepto: Doppler, mamario, musculo tendionoso, transfontanelar y transvaginal.</li>
                     </ul>
                 </div>
+                <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso">
+                    <ul>
+                        <li>Válido para un par de lentes monofocales o bifocales, en CR-39 Blanco, sin tratamientos hasta + - 3.75 dioptrías, a partir de +-4 dioptrías en policarbonato, con armazón económico.</li>
+                        <li>Armazones, diseño, tratamiento y material no son intercambiables.</li>
+                        <li>Valido un cupón por persona. No es válido para devoluciones para devoluciones en  efectivo ni con tarjeta.</li>
+                    </ul>
+                </div>
                 <div v-else class="sd-politicas-uso">
                     <ul>
                         <li>Estudio no acumulado. Limitado a una cortesía por persona.</li>
@@ -25,7 +32,7 @@
                         <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
                     </ul>
                 </div>
-                <div class="sd-contendor-sucursal">
+                <div v-if="cupon.lentes == 0" class="sd-contendor-sucursal">
                     <p class="sd-sucursal">Válido solo en clínica</p>
                     <p class="sd-text">
                         <strong class="sd-clinica">{{cupon.clincaName}}</strong>
@@ -40,7 +47,27 @@
                 </div> -->
             </div>
             <div class="sd-item-content">
-                <div class="sd-datos-folio">
+                <div v-if="cupon.lentes == 1" class="sd-datos-folio">
+                    <p class="sd-direccion-sucursal"></p>
+                    <div class="sd-content-folio">
+                        <p class="sd-text">Folio</p>
+                        <p class="sd-folio">{{cupon.folio}}</p>
+                        <p class="sd-estudio">LENTES</p>
+                    </div>
+                    <div class="sd-codigo-barras">
+                        <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
+                        No se pudo generar el Código de barras
+                        </barcode>
+                    </div>
+                    <div class="sd-vigencia">
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}} o hasta agotar existencias</p>
+                        <p class="sd-text-lentes">
+                            Este cupón es una cortesía y su venta esta prohibida. <br>
+                            No es negociable, intercambiable ni representa moneda legal.
+                        </p>
+                    </div>
+                </div>
+                <div v-else class="sd-datos-folio">
                     <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
                     <div class="sd-content-folio">
                         <p class="sd-text">Folio</p>
@@ -69,11 +96,18 @@
                 </thead>
                 <tbody>
                     <tr height="80px">
-                        <td>
-                            <li>Para evitar aglomeraciones, es importante que asista la persona que solo se realizará el estudio. Llevar acompañante solo en caso de ser necesario.</li>
-                            <li>Es importante que asista a clínica con su cubre bocas.</li>
-                            <li>Puedes <a style="color: #FF0000;">agendar tu cita, consultar preparaciones y  tus resultados</a> al <strong>01 800 008 2828</strong> o en la página de internet: <a href="" style="color: #0000FF;">https://salud-digna.org/</a></li>
-                        </td>
+                        <div v-if="cupon.lentes == 1">
+                            <td>
+                                <li>Cupón valido en las clínicas de: Oaxaca, Tuxtla Gutierrez, Tuxtla Gutierrez 5ta Norte, San Cristobal, Chihuahua, Chihuahua Deportista, Ciudad Juárez, Mérida y Mérida Altabrisa.</li>
+                            </td>
+                        </div>
+                        <div v-else>
+                            <td>
+                                <li>Para evitar aglomeraciones, es importante que asista la persona que solo se realizará el estudio. Llevar acompañante solo en caso de ser necesario.</li>
+                                <li>Es importante que asista a clínica con su cubre bocas.</li>
+                                <li>Puedes <a style="color: #FF0000;">agendar tu cita, consultar preparaciones y  tus resultados</a> al <strong>01 800 008 2828</strong> o en la página de internet: <a href="" style="color: #0000FF;">https://salud-digna.org/</a></li>
+                            </td>
+                        </div>
                     </tr>
                 </tbody>
             </table>
@@ -223,6 +257,13 @@
 
 .sd-text{
     font-size: 14px;
+    margin: 0;
+    line-height: 11px;
+    margin-bottom: 0!important;
+}
+
+.sd-text-lentes{
+    font-size: 8px;
     margin: 0;
     line-height: 11px;
     margin-bottom: 0!important;

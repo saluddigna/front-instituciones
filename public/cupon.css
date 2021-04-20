@@ -133,6 +133,13 @@
     line-height: 11px;
 }
 
+.sd-text-lentes{
+    font-size: 8px;
+    margin: 0;
+    line-height: 11px;
+    margin-bottom: 0!important;
+}
+
 .sd-estudio{
     font-size: 10px;
     margin: 0;
