@@ -97,9 +97,16 @@
                 <tbody>
                     <tr height="80px">
                         <div v-if="cupon.lentes == 1">
-                            <td>
-                                <li>Cupón valido en las clínicas de: Oaxaca, Tuxtla Gutierrez, Tuxtla Gutierrez 5ta Norte, San Cristobal, Chihuahua, Chihuahua Deportista, Ciudad Juárez, Mérida y Mérida Altabrisa.</li>
-                            </td>
+                            <div v-if="cupon.clinicaId == 15">
+                                <td>
+                                    <li>Cupón valido en la clínica de {{cupon.clincaName}}, {{cupon.clinicalAddress}}</li>
+                                </td>
+                            </div>
+                            <div v-else>
+                                <td>
+                                    <li>Cupón valido en las clínicas de: Oaxaca, Tuxtla Gutierrez, Tuxtla Gutierrez 5ta Norte, San Cristobal, Chihuahua, Chihuahua Deportista, Ciudad Juárez, Mérida y Mérida Altabrisa.</li>
+                                </td>
+                            </div>
                         </div>
                         <div v-else>
                             <td>
