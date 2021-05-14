@@ -18,6 +18,14 @@
                         <li>Excepto: Doppler, mamario, musculo tendionoso, transfontanelar y transvaginal.</li>
                     </ul>
                 </div>
+                <div v-else-if="cupon.lentes == 1 && cupon.clinicaId == 16" class="sd-politicas-uso">
+                    <ul>
+                        <li>Válido para un par de lentes monofocales o bifocales, en Cr-39 o 1.56 Blanco, sin tratamientos hasta + - 3.75 dioptrías, a partir de +-4 dioptrías en policarbonato, con armazón de selección especial</li>
+                        <li>Armazones, diseño, tratamiento y material no son intercambiables.</li>
+                        <li>Válido un cupón por persona. No aplica para devoluciones en efectivo ni con tarjeta.</li>
+                        <li>Valido para niños menores a 10 años.</li>
+                    </ul>
+                </div>
                 <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso">
                     <ul>
                         <li>Válido para un par de lentes monofocales o bifocales, en CR-39 Blanco, sin tratamientos hasta + - 3.75 dioptrías, a partir de +-4 dioptrías en policarbonato, con armazón económico.</li>
@@ -97,9 +105,9 @@
                 <tbody>
                     <tr height="80px">
                         <div v-if="cupon.lentes == 1">
-                            <div v-if="cupon.clinicaId == 15">
+                            <div v-if="cupon.clinicaId == 15 || cupon.clinicaId == 16">
                                 <td>
-                                    <li>Cupón valido en la clínica de {{cupon.clincaName}}, {{cupon.clinicalAddress}}</li>
+                                    <li>Cupón valido en la clínica de {{cupon.clincaName}}, Dirreccion: {{cupon.clinicalAddress}}</li>
                                 </td>
                             </div>
                             <div v-else>
