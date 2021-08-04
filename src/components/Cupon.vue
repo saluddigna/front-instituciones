@@ -7,13 +7,15 @@
                     <img src="../assets/imgs/logo.svg" alt="Logo Salud Digna">
                     <p class="sd-text">INSTITUCIÓN DE APOYO A LA PREVENCIÓN Y EL DIAGNOSTICO OPORTUNO</p>
                 </div>
-                <div class="logo-instituciones">
-                    <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
-                    <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                <div v-if="cupon.clinicaId != 20">
+                    <div class="logo-instituciones">
+                        <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
+                        <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                    </div>
                 </div>
                 <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso">
                     <ul>
-                        <li>Estudio no acumulado. Limitado a una cortesía por persona. Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
+                        <li>Estudio no acumulable. Limitado a una cortesía por persona. Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
                         <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
                         <li>Excepto: Doppler, mamario, musculo tendionoso, transfontanelar y transvaginal.</li>
                     </ul>
@@ -33,18 +35,39 @@
                         <li>Valido un cupón por persona. No es válido para devoluciones para devoluciones en  efectivo ni con tarjeta.</li>
                     </ul>
                 </div>
+                <div v-else-if="cupon.clinicaId == 20" class="sd-politicas-uso-2">
+                    <div v-if="cupon.estudioName == 'Paquete Qs3'">
+                        <ul>
+                            <li>Estudio no acumulable. Limitado a una cortesía por persona.</li>
+                            <li>Estudio valido solo con previa cita.</li>
+                            <li>Cupón valido por Biometría Hematica, QS 3 elementos, ferritina, Dimero D y Proteína C reactiva.</li>
+                        </ul>
+                    </div>
+                    <div v-else class="sd-politicas-uso-2">
+                        <ul>
+                            <li>Estudio no acumulable. Limitado a una cortesía por persona.</li>
+                            <li>Estudio valido solo con previa cita.</li>
+                        </ul>
+                    </div>
+                </div>
                 <div v-else class="sd-politicas-uso">
                     <ul>
-                        <li>Estudio no acumulado. Limitado a una cortesía por persona.</li>
+                        <li>Estudio no acumulable. Limitado a una cortesía por persona.</li>
                         <li>Estudio valido solo con previa cita. Sin cita, el paciente no podrá ser atendido.</li>
                         <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
                     </ul>
                 </div>
+
                 <div v-if="cupon.lentes == 0" class="sd-contendor-sucursal">
-                    <p class="sd-sucursal">Válido solo en clínica</p>
-                    <p class="sd-text">
-                        <strong class="sd-clinica">{{cupon.clincaName}}</strong>
-                    </p>
+                    <div v-if="cupon.clinicaId == 20">
+                        <p class="sd-sucursal">Válido en cualquier clínica de Salud Digna en <b>Culiacán</b>.</p>
+                    </div>
+                    <div v-else>
+                        <p class="sd-sucursal">Válido solo en clínica</p>
+                        <p class="sd-text">
+                            <strong class="sd-clinica">{{cupon.clincaName}}</strong>
+                        </p>
+                    </div>
                 </div>
         <!-- <div class="sd-nota">
                     <p class="sd-text">
@@ -77,10 +100,18 @@
                 </div>
                 <div v-else class="sd-datos-folio">
                     <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
-                    <div class="sd-content-folio">
-                        <p class="sd-text">Folio</p>
-                        <p class="sd-folio">{{cupon.folio}}</p>
-                        <p class="sd-estudio">{{cupon.estudioName}}</p>
+                    <div v-if="cupon.estudioName == 'Paquete Qs3'">
+                        <div class="sd-content-folio">
+                            <p class="sd-text">Folio</p>
+                            <p class="sd-folio">{{cupon.folio}}</p>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="sd-content-folio">
+                            <p class="sd-text">Folio</p>
+                            <p class="sd-folio">{{cupon.folio}}</p>
+                            <p class="sd-estudio">{{cupon.estudioName}}</p>
+                        </div>
                     </div>
                     <div class="sd-codigo-barras">
                         <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
@@ -298,6 +329,10 @@
 
 .sd-politicas-uso ul li{
     font-size: 10px;
+}
+
+.sd-politicas-uso-2 ul li{
+    font-size: 12px;
 }
 
 .sd-contendor-sucursal{
