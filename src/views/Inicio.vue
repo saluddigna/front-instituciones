@@ -3,6 +3,17 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="6" class="offset-md-6">
+        <div class="tabs d-flex px-5">
+              <div class="tab" @click="multi=0" :class="{'activo': multi==0}">
+                <h4>Instituciones</h4>
+              </div>
+              <div class="tab" @click="multi=1" :class="{'activo': multi==1}">
+                <h4>Congreso Médico Internacional</h4>
+              </div>
+        </div>
+        </v-col>
+
+        <v-col cols="12" md="6" class="offset-md-6" v-if="!multi">
           <h2 class="text-center">{{institucion}}</h2>
           <!-- <h3 class="text-center">{{ext}}</h3> -->
           <v-card class="h-75">
@@ -14,8 +25,24 @@
                 <h4>Asignar folio a beneficiario</h4>
               </div>
             </div>
-            <solicitar v-if="!activar" />
+            <solicitar v-if="!activar" multi='false' />
             <asignar v-else />
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6" class="offset-md-6" v-if="multi">
+          <h2 class="text-center">{{institucion}} Congreso Médico</h2>
+          <!-- <h3 class="text-center">{{ext}}</h3> -->
+          <v-card class="h-75">
+            <div class="tabs d-flex px-5">
+              <div class="tab" @click="activar=0" :class="{'activo': activar==0}">
+                <h4>Solicitar nuevos folios</h4>
+              </div>
+              <div class="tab" @click="activar=1" :class="{'activo': activar==1}">
+                <h4>Asignar folio a beneficiario</h4>
+              </div>
+            </div>
+            <solicitar v-if="!activar" multi='true' />
+            <AsignarMulti v-else />
           </v-card>
         </v-col>
       </v-row>
@@ -70,16 +97,19 @@
 <script>
 import Solicitar from '../components/Solicitar'
 import Asignar from '../components/Asignar'
+import AsignarMulti from '../components/Asignar-multi'
 export default {
   name: "Inicio",
   components: {
     Solicitar,
-    Asignar
+    Asignar,
+    AsignarMulti
   },
   data: () => ({
     institucion:JSON.parse(sessionStorage.getItem('dataUser')).institution.name,
     ext:'Facultad de Ingeniería',
-    activar:0
+    activar:0,
+    multi:0
   }),
   mounted(){
        let dataUser = JSON.parse(sessionStorage.getItem('dataUser'))   

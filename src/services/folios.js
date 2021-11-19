@@ -24,6 +24,15 @@ service.solicitarFolios = function(data){
     }).then(res => res.data)
   }
 
+  service.solicitarFoliosMasivos = function(data){
+    // let data={
+    //   study:estudio,
+    //   quantity:cantidad,
+    //   institution:institucion
+    //   }
+    return api.post('/api/folios/solicitar-folios-masivos', data).then(res => res.data)
+  }
+
 
   service.getDisponibles = function(id){
     return api.get('/api/folios/disponibles-institucion/'+id).then(res => res.data)
@@ -40,6 +49,10 @@ service.generarFolios = function(data){
       },
       data
   }).then(res => res.data)
+}
+service.generaryCrear = function(data){
+  return api.post('/api/assignedFolios/assign-create',data)
+  .then(res => res.data)
 }
 service.getGenerados = function(id){
   return api.get('/api/folios/obtener-generados/'+id).then(res => res.data)
