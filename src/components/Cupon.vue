@@ -1,7 +1,7 @@
 <template>
   <div class="sd-contenedor-cupones">
     <div v-for="(cupon, c) in cupones" :key="cupon.folio" class="sd-cupon-general">
-        <div class="sd-item-cupon">
+        <div class="sd-item-cupon" v-if="dataUser.congreso === 0">
             <div class="sd-item-content">
                 <div class="sd-item-logo">
                     <img src="../assets/imgs/logo.svg" alt="Logo Salud Digna">
@@ -124,6 +124,131 @@
                             Este cupón es una cortesía y su venta esta prohibida. <br>
                             No es negociable, intercambiable ni representa moneda legal.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sd-item-cupon" v-else>
+            <div class="sd-item-content congreso-content">
+                <div class="sd-item-logo">
+                    <img src="../assets/imgs/ico-SD-color.svg" alt="Logo Salud Digna">
+                    <p class="sd-text" style="color: #cdd1d1;">INSTITUCIÓN DE APOYO A LA PREVENCIÓN Y EL DIAGNOSTICO OPORTUNO</p>
+                </div>
+                <div v-if="cupon.clinicaId != 20">
+                    <div class="logo-instituciones">
+                        <img src="../assets/imgs/logo_congreso.png" alt="Logo campaña">
+                        <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                    </div>
+                </div>
+                <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por cualquier tipo de ultrasonido excepto <b>doppler, mamario tendionoso, transfontanelar y transvaginal.</b></li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.estudioName == 'Paquete Qs6 Parámetros'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Química Sanguínea de seis elementos <b>(glucosa, colesterol, triglicéridos, ácido úrico, urea y creatinina).</b></li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.estudioName == 'Densitometría'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por un estudio de densitometría.</li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.estudioName == 'Papanicolaou'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por un estudio de papanicolaou en base líquida.</li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por un par de <b>lentes graduados con antireflejante.</b></li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.estudioName == 'Mastografía'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por un estudio de mastografía.</li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+                <div v-else-if="cupon.estudioName == 'Electrocardiograma'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                    <ul>
+                        <li>Válido por un estudio de electrocardiograma.</li>
+                        <li>No acumulable, limitado a una cortesía por persona.</li>
+                        <li>Estudios válidos solo con previa cita.</li>
+                    </ul>
+                </div>
+
+                <div class="sd-contendor-sucursal" style="background-color: #fbb03f;">
+                    <div>
+                        <p class="sd-sucursal"><b>Válido en todas las clínicas de Salud Digna México y Nicaragua </b>presentando este cupón en físico.</p>
+                    </div>
+                </div>
+        <!-- <div class="sd-nota">
+                    <p class="sd-text">
+                        Este cupón es una cortesía y su venta está prohibida.
+                        <br>
+                        No es negociable, intercambiable ni representa moneda legal.
+                    </p>
+                </div> -->
+            </div>
+            <div class="sd-item-content">
+                <div v-if="cupon.lentes == 0 && cupon.estudioName != 'Papanicolaou'" style="text-align: center">
+                    <img v-if="cupon.estudioName == 'Densitometría'" style="width: 40%" src="../assets/imgs/congreso-iconos/densitometria.svg" />
+                    <img v-if="cupon.estudioName == 'Electrocardiograma'" style="width: 40%" src="../assets/imgs/congreso-iconos/electrocardiograma.svg" />
+                    <img v-if="cupon.estudioName == 'Mastografía'" style="width: 40%" src="../assets/imgs/congreso-iconos/mastografia.svg" />
+                    <img v-if="cupon.estudioName == 'Paquete Qs6 Parámetros'" style="width: 40%" src="../assets/imgs/congreso-iconos/quimicasanguinea.svg" />
+                    <img v-if="cupon.estudioName == 'Ultrasonido'" style="width: 40%" src="../assets/imgs/congreso-iconos/ultrasonido.svg" />
+                </div>
+                <div v-if="cupon.lentes == 1" class="sd-datos-folio">
+                    <p class="sd-direccion-sucursal"></p>
+                    <div class="sd-content-folio">
+                        <p class="sd-text">Folio</p>
+                        <p class="sd-folio">{{cupon.folio}}</p>
+                        <p class="sd-estudio">LENTES</p>
+                    </div>
+                    <div class="sd-codigo-barras">
+                        <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
+                        No se pudo generar el Código de barras
+                        </barcode>
+                    </div>
+                    <div class="sd-vigencia">
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}} o hasta agotar existencias</p>
+                    </div>
+                </div>
+                <div v-else class="sd-datos-folio">
+                    <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
+                    <div v-if="cupon.estudioName == 'Paquete Qs3'">
+                        <div class="sd-content-folio">
+                            <p class="sd-text">Folio</p>
+                            <p class="sd-folio">{{cupon.folio}}</p>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="sd-content-folio">
+                            <p class="sd-text">Folio</p>
+                            <p class="sd-folio">{{cupon.folio}}</p>
+                            <p class="sd-estudio">{{cupon.estudioName === 'Paquete Qs6 Parámetros' ? 'Química Sanguínea de seis elementos' : cupon.estudioName}}</p>
+                        </div>
+                    </div>
+                    <div class="sd-codigo-barras">
+                        <barcode :value="cupon.folio" height="15"  background="#EDEDED" displayValue="false" width="1" >
+                        No se pudo generar el Código de barras
+                        </barcode>
+                    </div>
+                    <div class="sd-vigencia">
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
                     </div>
                 </div>
             </div>
@@ -408,6 +533,13 @@
     text-align: left;;
     font-weight: bold;
 }
+
+/* CONGRESO MEDICO INTERNACIONAL */
+.sd-item-cupon .congreso-content{
+    background-image: url("~@/assets/imgs/fondo.png");
+    background-size: cover;
+    padding: 0px 5px;
+}
 </style>
 <script>
 import VueBarcode from 'vue-barcode';
@@ -416,7 +548,21 @@ export default {
   components: {
     'barcode': VueBarcode
   },
+  mounted(){
+    this.dataUser = JSON.parse(sessionStorage.getItem('dataUser'))
+    console.log(this.dataUser.congreso)
+  },
   data:()=>({
+      dataUser:null,
+      imageMask: {
+          Ultrasonido: "ultrasonido.svg",
+          Densitometría: "densitometria.svg",
+          Papanicolaou: "",
+          Lentes: "",
+          Mastografía: "mastografia.svg",
+          Electrocardiograma: "electrocardiograma.svg",
+          QuimicaSanguinea: "quimicasanguinea.svg"
+      }
   }),
   props:{
     cupones:[]
