@@ -131,7 +131,7 @@
         <div class="sd-item-cupon" v-else>
             <div class="sd-item-content congreso-content">
                 <div class="sd-item-logo">
-                    <img src="../assets/imgs/ico-SD-color.svg" alt="Logo Salud Digna">
+                    <img src="../assets/imgs/logo-sd-congreso.svg" alt="Logo Salud Digna">
                     <p class="sd-text" style="color: #cdd1d1;">INSTITUCIÓN DE APOYO A LA PREVENCIÓN Y EL DIAGNOSTICO OPORTUNO</p>
                 </div>
                 <div v-if="cupon.clinicaId != 20">
@@ -204,12 +204,14 @@
                 </div> -->
             </div>
             <div class="sd-item-content">
-                <div v-if="cupon.lentes == 0 && cupon.estudioName != 'Papanicolaou'" style="text-align: center">
+                <div style="text-align: center">
                     <img v-if="cupon.estudioName == 'Densitometría'" style="width: 40%" src="../assets/imgs/congreso-iconos/densitometria.svg" />
                     <img v-if="cupon.estudioName == 'Electrocardiograma'" style="width: 40%" src="../assets/imgs/congreso-iconos/electrocardiograma.svg" />
                     <img v-if="cupon.estudioName == 'Mastografía'" style="width: 40%" src="../assets/imgs/congreso-iconos/mastografia.svg" />
                     <img v-if="cupon.estudioName == 'Paquete Qs6 Parámetros'" style="width: 40%" src="../assets/imgs/congreso-iconos/quimicasanguinea.svg" />
                     <img v-if="cupon.estudioName == 'Ultrasonido'" style="width: 40%" src="../assets/imgs/congreso-iconos/ultrasonido.svg" />
+                    <img v-if="cupon.estudioName == 'Papanicolaou'" style="width: 40%" src="../assets/imgs/congreso-iconos/papanicolaou.svg" />
+                    <img v-if="cupon.lentes == 1" style="width: 40%" src="../assets/imgs/congreso-iconos/lentes.svg" />
                 </div>
                 <div v-if="cupon.lentes == 1" class="sd-datos-folio">
                     <p class="sd-direccion-sucursal"></p>
