@@ -129,60 +129,61 @@
             </div>
         </div>
         <div class="sd-item-cupon" v-else>
-            <div class="sd-item-content congreso-content">
-                <div class="sd-item-logo">
+            <div class="sd-item-content congreso-content" style="position: relative">
+                <img src="../assets/imgs/fondo.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;" />
+                <div class="sd-item-logo" style="z-index: 1">
                     <img src="../assets/imgs/logo-sd-congreso.svg" alt="Logo Salud Digna">
                     <p class="sd-text" style="color: #cdd1d1;">INSTITUCIÓN DE APOYO A LA PREVENCIÓN Y EL DIAGNOSTICO OPORTUNO</p>
                 </div>
-                <div v-if="cupon.clinicaId != 20">
+                <div v-if="cupon.clinicaId != 20" style="z-index: 1">
                     <div class="logo-instituciones">
                         <img src="../assets/imgs/logo_congreso.png" alt="Logo campaña">
                         <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
                     </div>
                 </div>
-                <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por cualquier tipo de ultrasonido excepto <b>doppler, mamario tendionoso, transfontanelar y transvaginal.</b></li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.estudioName == 'Paquete Qs6 Parámetros'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.estudioName == 'Paquete Qs6 Parámetros'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Química Sanguínea de seis elementos <b>(glucosa, colesterol, triglicéridos, ácido úrico, urea y creatinina).</b></li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.estudioName == 'Densitometría'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.estudioName == 'Densitometría'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por un estudio de densitometría.</li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.estudioName == 'Papanicolaou'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.estudioName == 'Papanicolaou'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por un estudio de papanicolaou en base líquida.</li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por un par de <b>lentes graduados con antireflejante.</b></li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.estudioName == 'Mastografía'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.estudioName == 'Mastografía'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por un estudio de mastografía.</li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
                         <li>Estudios válidos solo con previa cita.</li>
                     </ul>
                 </div>
-                <div v-else-if="cupon.estudioName == 'Electrocardiograma'" class="sd-politicas-uso" style="padding: 0px 5px; color: white;">
+                <div v-else-if="cupon.estudioName == 'Electrocardiograma'" class="sd-politicas-uso" style="padding: 0px 5px; color: white; z-index: 1">
                     <ul>
                         <li>Válido por un estudio de electrocardiograma.</li>
                         <li>No acumulable, limitado a una cortesía por persona.</li>
@@ -190,7 +191,7 @@
                     </ul>
                 </div>
 
-                <div class="sd-contendor-sucursal" style="background-color: #fbb03f;">
+                <div class="sd-contendor-sucursal" style="background-color: #fbb03f; z-index: 1">
                     <div>
                         <p class="sd-sucursal"><b>Válido en todas las clínicas de Salud Digna México y Nicaragua </b>presentando este cupón en físico.</p>
                     </div>
@@ -538,7 +539,6 @@
 
 /* CONGRESO MEDICO INTERNACIONAL */
 .sd-item-cupon .congreso-content{
-    background-image: url("~@/assets/imgs/fondo.png");
     background-size: cover;
     padding: 0px 5px;
 }
