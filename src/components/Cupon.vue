@@ -28,6 +28,14 @@
                         <li>Valido para niños menores a 10 años.</li>
                     </ul>
                 </div>
+                <div v-else-if="(dataUser.institution && dataUser.institution.id == 399)" class="sd-politicas-uso">
+                    <ul>
+                        <li>Estudio no acumulable/ limitado a una cortesía por persona.</li>
+                        <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
+                        <li>Valido solo en clínica La Paz.</li>
+                        <li>Dirección: Blvd. Forjadores #3110, Adolfo Ruíz Cortínez, 23040 La Paz, B.C.S.</li>
+                    </ul>
+                </div>
                 <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso">
                     <ul>
                         <li>Válido para un par de lentes monofocales o bifocales, en CR-39 Blanco, sin tratamientos hasta + - 3.75 dioptrías, a partir de +-4 dioptrías en policarbonato, con armazón económico.</li>
@@ -91,7 +99,7 @@
                         </barcode>
                     </div>
                     <div class="sd-vigencia">
-                        <p class="sd-text">{{dateFormat(cupon.vigencia)}} o hasta agotar existencias</p>
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
                         <p class="sd-text-lentes">
                             Este cupón es una cortesía y su venta esta prohibida. <br>
                             No es negociable, intercambiable ni representa moneda legal.
@@ -227,7 +235,7 @@
                         </barcode>
                     </div>
                     <div class="sd-vigencia">
-                        <p class="sd-text">{{dateFormat(cupon.vigencia)}} o hasta agotar existencias</p>
+                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
                     </div>
                 </div>
                 <div v-else class="sd-datos-folio">
@@ -267,6 +275,11 @@
                             <div v-if="cupon.clinicaId == 15 || cupon.clinicaId == 16">
                                 <td>
                                     <li>Cupón valido en la clínica de {{cupon.clincaName}}, Dirreccion: {{cupon.clinicalAddress}}</li>
+                                </td>
+                            </div>
+                            <div v-else-if="(dataUser.institution && dataUser.institution.id == 399)">
+                                <td>
+                                    <li>Valido por un par de lentes monofocal/bifocal para niños de 6 a 15 años, material CR-39 blanco (en caso de graduación superior a 5 dioptrías será fabricado en policarbonato), sin tratamiento, armazón económico en estuche sencillo. garantía de 15 días en graduación y tres meses por defecto de fábrica</li>
                                 </td>
                             </div>
                             <div v-else>
