@@ -10,7 +10,7 @@
                 <div v-if="cupon.clinicaId != 20">
                     <div class="logo-instituciones">
                         <img src="../assets/imgs/Mas.svg" alt="Logo campaña">
-                        <img v-if="cupon.parentEstudioId==3" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
+                        <img v-if="cupon.parentEstudioId==3 && (dataUser.institution && dataUser.institution.id != 399)" src="../assets/imgs/logo_coppel.png" alt="Logo Coppel">
                     </div>
                 </div>
                 <div v-if="cupon.estudioName == 'Ultrasonido'" class="sd-politicas-uso">
@@ -32,8 +32,8 @@
                     <ul>
                         <li>Estudio no acumulable/ limitado a una cortesía por persona.</li>
                         <li>Cupón no valido sin el sello y/o nombre de la institución.</li>
-                        <li>Valido solo en clínica La Paz.</li>
-                        <li>Dirección: Blvd. Forjadores #3110, Adolfo Ruíz Cortínez, 23040 La Paz, B.C.S.</li>
+                        <!-- <li>Valido solo en clínica La Paz.</li>
+                        <li>Dirección: Blvd. Forjadores #3110, Adolfo Ruíz Cortínez, 23040 La Paz, B.C.S.</li> -->
                     </ul>
                 </div>
                 <div v-else-if="cupon.lentes == 1" class="sd-politicas-uso">
@@ -112,6 +112,7 @@
                         <div class="sd-content-folio">
                             <p class="sd-text">Folio</p>
                             <p class="sd-folio">{{cupon.folio}}</p>
+                            <p v-if="(dataUser.institution && dataUser.institution.id == 399)">QS3</p>
                         </div>
                     </div>
                     <div v-else>
