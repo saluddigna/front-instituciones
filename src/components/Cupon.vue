@@ -66,7 +66,7 @@
                     </ul>
                 </div>
 
-                <div v-if="cupon.lentes == 0" class="sd-contendor-sucursal">
+                <div v-if="cupon.lentes == 0 || dataUser.institution.id == 399" class="sd-contendor-sucursal">
                     <div v-if="cupon.clinicaId == 20">
                         <p class="sd-sucursal">Válido en cualquier clínica de Salud Digna en <b>Culiacán</b>.</p>
                     </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="sd-item-content">
                 <div v-if="cupon.lentes == 1" class="sd-datos-folio">
-                    <p class="sd-direccion-sucursal"></p>
+                    <p  v-if="dataUser.institution.id == 399" class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
                     <div class="sd-content-folio">
                         <p class="sd-text">Folio</p>
                         <p class="sd-folio">{{cupon.folio}}</p>
