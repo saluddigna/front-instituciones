@@ -99,6 +99,12 @@
     font-weight: bold;
 }
 
+.sd-direccion-sucursal2{
+    font-size: 4.5px;
+    margin: 0 0 2px 0;
+    font-weight: bold;
+}
+
 .sd-sucursal{
     font-size: 10px;
     font-weight: 600;
@@ -131,6 +137,13 @@
     font-size: 14px;
     margin: 0;
     line-height: 11px;
+}
+
+.sd-text-ma{
+    font-size: 10px;
+    margin: 0;
+    line-height: 11px;
+    margin-bottom: 0!important;
 }
 
 .sd-text-lentes{
@@ -197,6 +210,22 @@
     margin: 3px 0 0 0;
     text-align: center;
     line-height: 6px;
+}
+
+.sd-vigencia .sd-text2{
+    color: #1C9545;
+    font-weight: bold;
+    font-size: 7.5px;
+    text-align: left;
+    margin: 0;
+}
+
+.sd-vigencia .sd-text2:nth-child(2){
+    color: #111;
+    font-size: 4.2px;
+    text-align: center;
+    line-height: 6px;
+    padding: 5px 0px 0px 0px;
 }
 
 .sd-cupon-general{

@@ -71,10 +71,18 @@
                         <p class="sd-sucursal">Válido en cualquier clínica de Salud Digna en <b>Culiacán</b>.</p>
                     </div>
                     <div v-else>
-                        <p class="sd-sucursal">Válido solo en clínica</p>
-                        <p class="sd-text">
-                            <strong class="sd-clinica">{{cupon.clincaName}}</strong>
-                        </p>
+                        <div v-if="cupon.clinicaId == 30">
+                            <p class="sd-sucursal">Válido en las clínicas de</p>
+                            <p class="sd-text-ma">
+                                <strong class="sd-clinica">{{cupon.clincaName}}</strong>
+                            </p>
+                        </div>
+                        <div v-else>
+                            <p class="sd-sucursal">Válido solo en clínica</p>
+                            <p class="sd-text">
+                                <strong class="sd-clinica">{{cupon.clincaName}}</strong>
+                            </p>
+                        </div>
                     </div>
                 </div>
         <!-- <div class="sd-nota">
@@ -99,7 +107,12 @@
                         </barcode>
                     </div>
                     <div class="sd-vigencia">
-                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
+                        <div v-if="cupon.clinicaId == 30">
+                            <p class="sd-text2">{{dateFormat(cupon.vigencia)}}</p>
+                        </div>
+                        <div v-else>
+                            <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
+                        </div>
                         <p class="sd-text-lentes">
                             Este cupón es una cortesía y su venta esta prohibida. <br>
                             No es negociable, intercambiable ni representa moneda legal.
@@ -107,7 +120,12 @@
                     </div>
                 </div>
                 <div v-else class="sd-datos-folio">
-                    <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
+                    <div v-if="cupon.clinicaId == 30">
+                        <p class="sd-direccion-sucursal2" style = "white-space: pre-wrap;">{{cupon.clinicalAddress}}</p>
+                    </div>
+                    <div v-else>
+                        <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
+                    </div>
                     <div v-if="cupon.estudioName == 'Paquete Qs3'">
                         <div class="sd-content-folio">
                             <p class="sd-text">Folio</p>
@@ -127,13 +145,24 @@
                         No se pudo generar el Código de barras
                         </barcode>
                     </div>
-                    <div class="sd-vigencia">
-                        <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
-                        <p class="sd-text">
-                            Este cupón es una cortesía y su venta esta prohibida. <br>
-                            No es negociable, intercambiable ni representa moneda legal.
-                        </p>
-                    </div>
+                        <div v-if="cupon.clinicaId == 30">
+                            <div class="sd-vigencia">
+                                <p class="sd-text2">{{dateFormat(cupon.vigencia)}}</p>
+                                <p class="sd-text2">
+                                    Este cupón es una cortesía y su venta esta prohibida. <br>
+                                    No es negociable, intercambiable ni representa moneda legal.
+                                </p>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="sd-vigencia">
+                                <p class="sd-text">{{dateFormat(cupon.vigencia)}}</p>
+                                <p class="sd-text">
+                                    Este cupón es una cortesía y su venta esta prohibida. <br>
+                                    No es negociable, intercambiable ni representa moneda legal.
+                                </p>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -240,7 +269,12 @@
                     </div>
                 </div>
                 <div v-else class="sd-datos-folio">
-                    <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
+                    <div v-if="cupon.clinicaId == 30">
+                        <p class="sd-direccion-sucursal2" style = "white-space: pre-wrap;">{{cupon.clinicalAddress}}</p>
+                    </div>
+                    <div v-else>
+                        <p class="sd-direccion-sucursal">{{cupon.clinicalAddress}}</p>
+                    </div>
                     <div v-if="cupon.estudioName == 'Paquete Qs3'">
                         <div class="sd-content-folio">
                             <p class="sd-text">Folio</p>
@@ -410,6 +444,12 @@
     font-weight: bold;
 }
 
+.sd-direccion-sucursal2{
+    font-size: 4.5px;
+    margin: 0 0 2px 0;
+    font-weight: bold;
+}
+
 .sd-sucursal{
     font-size: 10px;
     font-weight: 600;
@@ -445,6 +485,13 @@
 
 .sd-text{
     font-size: 14px;
+    margin: 0;
+    line-height: 11px;
+    margin-bottom: 0!important;
+}
+
+.sd-text-ma{
+    font-size: 10px;
     margin: 0;
     line-height: 11px;
     margin-bottom: 0!important;
@@ -514,6 +561,22 @@
     font-size: 4.2px;
     text-align: center;
     line-height: 6px;
+}
+
+.sd-vigencia .sd-text2{
+    color: #1C9545;
+    font-weight: bold;
+    font-size: 7.5px;
+    text-align: left;
+    margin: 0;
+}
+
+.sd-vigencia .sd-text2:nth-child(2){
+    color: #111;
+    font-size: 4.2px;
+    text-align: center;
+    line-height: 6px;
+    padding: 5px 0px 0px 0px;
 }
 
 .sd-cupon-general{
